@@ -10,6 +10,19 @@ Transaction cost for the smart contracts and addition of layers is 0.345953646	E
 
 <hr />
 
+In scripts
+
+```
+node 01_scrapeAddLayerTxs.js > addLayerTxs.txt
+```
+
+PNG images extracted from the transaction data can be found in [scripts/images](scripts/images). The same images are available as SVGs in [script/svgs/](scripts/svgs).
+
+
+<br />
+
+<hr />
+
 ### All Images By Layers And Traits
 
 #### Layer 0 Legendaries Trait 000 Creature Pepe
