@@ -29,6 +29,14 @@ PNG images extracted from the transaction data can be found in [scripts/images](
 
 
 
+```
+tokenIdToHash(4734) = 011003007001016014027001052000006
+```
+
+```
+hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendaries","value":"None"},{"trait_type":"Mouth","value":"None"},{"trait_type":"Eyewear","value":"Hipster Glasses"},{"trait_type":"Nose","value":"None"},{"trait_type":"Headwear","value":"Queen's Crown"},{"trait_type":"Eyes","value":"Happy"},{"trait_type":"Clothing","value":"Gold Chain"},{"trait_type":"Lips","value":"Happy"},{"trait_type":"Body","value":"Beeping Froglet"},{"trait_type":"Skill","value":"Time Travel"},{"trait_type":"Background","value":"Punks "}]
+```
+
 <br />
 
 <hr />
