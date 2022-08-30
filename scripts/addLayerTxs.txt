@@ -1,17 +1,5 @@
-# ProofOfPepesInfo
 
-
-Some info on the Proof of Pepes NFT Collection (not affiliated)
-
-
-
-<br />
-
-<hr />
-
-### All Images By Layers And Traits
-
-#### Layer 0 Legendaries Trait 000 Creature Pepe
+#### Layer 0 Legendaries Trait 000 Creature Pepe 
 <kbd><img src="scripts/svgs/layer0-trait000-creaturepepe.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 0 Legendaries Trait 001 Fvck_Pepe
@@ -20,7 +8,7 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 0 Legendaries Trait 002 Chopper
 <kbd><img src="scripts/svgs/layer0-trait002-chopper.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 0 Legendaries Trait 003 Doodle Pepe
+#### Layer 0 Legendaries Trait 003 Doodle Pepe 
 <kbd><img src="scripts/svgs/layer0-trait003-doodlepepe.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 0 Legendaries Trait 004 Pauly
@@ -95,7 +83,7 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 2 Eyewear Trait 011 None
 <kbd><img src="scripts/svgs/layer2-trait011-none.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 3 Nose Trait 000 Clown Nose
+#### Layer 3 Nose Trait 000 Clown Nose 
 <kbd><img src="scripts/svgs/layer3-trait000-clownnose.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 3 Nose Trait 001 None
@@ -116,7 +104,7 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 4 Headwear Trait 004 Tiara
 <kbd><img src="scripts/svgs/layer4-trait004-tiara.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 4 Headwear Trait 005 Gremps
+#### Layer 4 Headwear Trait 005 Gremps 
 <kbd><img src="scripts/svgs/layer4-trait005-gremps.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 4 Headwear Trait 006 Bow
@@ -638,7 +626,7 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 9 Skill Trait 001 Ability to Fly
 <kbd><img src="scripts/svgs/layer9-trait001-abilitytofly.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 9 Skill Trait 002 Invisibility
+#### Layer 9 Skill Trait 002 Invisibility 
 <kbd><img src="scripts/svgs/layer9-trait002-invisibility.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 10 Background Trait 000 Light
@@ -659,10 +647,10 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 10 Background Trait 005 Pale Blue-Green
 <kbd><img src="scripts/svgs/layer10-trait005-paleblue-green.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 10 Background Trait 006 Punks
+#### Layer 10 Background Trait 006 Punks 
 <kbd><img src="scripts/svgs/layer10-trait006-punks.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 10 Background Trait 007 Salmon
+#### Layer 10 Background Trait 007 Salmon 
 <kbd><img src="scripts/svgs/layer10-trait007-salmon.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 10 Background Trait 008 Pale Green
@@ -677,7 +665,7 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 #### Layer 10 Background Trait 011 Mustard Yellow
 <kbd><img src="scripts/svgs/layer10-trait011-mustardyellow.svg" width="300px" height="300px" /></kbd>
 
-#### Layer 10 Background Trait 012 Light Purple
+#### Layer 10 Background Trait 012 Light Purple 
 <kbd><img src="scripts/svgs/layer10-trait012-lightpurple.svg" width="300px" height="300px" /></kbd>
 
 #### Layer 10 Background Trait 013 Light Blue
