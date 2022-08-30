@@ -755,4 +755,4 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 
 Enjoy!
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd - Tue 30 2022. The MIT Licence.
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Aug 30 2022. The MIT Licence.
