@@ -1,9 +1,10 @@
 # ProofOfPepesInfo
 
+[Proof of Pepe](https://proofofpepe.xyz/), not associated, is a fully on-chain NFT collection deployed on the Ethereum blockchain at [0x2f46E37477Ca4033D74986b15F0572e9913B4858](https://etherscan.io/address/0x2f46E37477Ca4033D74986b15F0572e9913B4858#code). See also: [OpenSea](https://opensea.io/collection/proofofpepe) and [Twitter](https://twitter.com/proofofpepe).
 
-Some info on the Proof of Pepes NFT Collection (not affiliated)
+The MFF smart contract was deployed [Aug-29-2022 06:01:58 AM +UTC](https://etherscan.io/tx/0xf2b42a7b9a5917a65e357bbbfdfce783eddcee48473969061f5341c3b5a646f2), and 11 layers of traits data was loaded in transactions, by layers: [0](https://etherscan.io/tx/0xbf31c60e00e9edcc9523dd5745f2cb2862387a20fa892b810ff0496b4a93f887), [1](https://etherscan.io/tx/0xf5978752cb1898c90976def3eb1d50d47b8b62b11fd09eb92094568e431372a3), [2](https://etherscan.io/tx/0x0bf81c35b440b44c6f6f1d4b6dc72fe2bea93d7904ec793bd1fcecd527c97e6f), [3](https://etherscan.io/tx/0x3879eb124e74c048fb80d964a0df9c8fe2ee5ec56c585c5fb6b99c48adc0ee9e), [4](https://etherscan.io/tx/0x1256ef027223fd7d06024d59b0d741d2c633cb1c2fc9dc06bbc322ceac2231af), [5](https://etherscan.io/tx/0xb29d6c3349853a5e495a60ad169a24d4f342c6449e633cb801bb29b3126b1de9), [6](https://etherscan.io/tx/0x8db2e90478f87f166fa9f5b1d80d03724840718e97e223b20f66263838a3b570), [7](https://etherscan.io/tx/0x252a42680723e2d03891b940de66f6365be4d7626433a1334abd9a18a73d2980), [8](https://etherscan.io/tx/0x48cd7e8fc4e773766e0efab4a274a814239444a325e6c08ec33197b3bdf7eb57), [9](https://etherscan.io/tx/0x3a679b00a860d4eb01045ef0f5a13255a62da7c47ef712ea3372daf729eea8a5) and [10](https://etherscan.io/tx/0xe979b098b6585cc1a852bb06e5e3ba532a527e10b66f74a974630a0e4bc19274).
 
-
+Transaction cost for the smart contracts and addition of layers is 0.345953646	ETH, or ~ USD 544.44 .
 
 <br />
 
@@ -685,3 +686,11 @@ Some info on the Proof of Pepes NFT Collection (not affiliated)
 
 #### Layer 10 Background Trait 014 Pale Pink
 <kbd><img src="scripts/svgs/layer10-trait014-palepink.svg" width="300px" height="300px" /></kbd>
+
+<br />
+
+<br />
+
+Enjoy!
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd - Tue 30 2022. The MIT Licence.
