@@ -27,7 +27,38 @@ PNG images extracted from the transaction data can be found in [scripts/images](
 
 <kbd><img src="images/proofofpepe_4734_7669a0da1788498cd05e8701924fbd92.svg" width="300px" height="300px" /></kbd>
 
+#### Layer 0 Legendaries Trait 011 None
+<kbd><img src="scripts/svgs/layer0-trait011-none.svg" width="300px" height="300px" /></kbd>
 
+#### Layer 1 Mouth Trait 003 None
+<kbd><img src="scripts/svgs/layer1-trait003-none.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 2 Eyewear Trait 007 Hipster Glasses
+<kbd><img src="scripts/svgs/layer2-trait007-hipsterglasses.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 3 Nose Trait 001 None
+<kbd><img src="scripts/svgs/layer3-trait001-none.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 4 Headwear Trait 016 Queen's Crown
+<kbd><img src="scripts/svgs/layer4-trait016-queenscrown.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 5 Eyes Trait 014 Happy
+<kbd><img src="scripts/svgs/layer5-trait014-happy.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 6 Clothing Trait 027 Gold Chain
+<kbd><img src="scripts/svgs/layer6-trait027-goldchain.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 7 Lips Trait 001 Happy
+<kbd><img src="scripts/svgs/layer7-trait001-happy.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 8 Body Trait 052 Beeping Froglet
+<kbd><img src="scripts/svgs/layer8-trait052-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 9 Skill Trait 000 Time Travel
+<kbd><img src="scripts/svgs/layer9-trait000-timetravel.svg" width="300px" height="300px" /></kbd>
+
+#### Layer 10 Background Trait 006 Punks
+<kbd><img src="scripts/svgs/layer10-trait006-punks.svg" width="300px" height="300px" /></kbd>
 
 ```
 tokenIdToHash(4734) = 011003007001016014027001052000006
