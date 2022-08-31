@@ -8,27 +8,11 @@ const POPABI=[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},
 
 
 // Contract deployment 0xed0555bf0420aab38d62065f1cafdbce032528189a7483b2b8a95201f92734b3
-let ADDLAYERTXHASHES = [
-  // "0xbf31c60e00e9edcc9523dd5745f2cb2862387a20fa892b810ff0496b4a93f887", // #0
-  // "0xf5978752cb1898c90976def3eb1d50d47b8b62b11fd09eb92094568e431372a3", // #1
-  // "0x0bf81c35b440b44c6f6f1d4b6dc72fe2bea93d7904ec793bd1fcecd527c97e6f", // #2
-  // "0x3879eb124e74c048fb80d964a0df9c8fe2ee5ec56c585c5fb6b99c48adc0ee9e", // #3
-  // "0x1256ef027223fd7d06024d59b0d741d2c633cb1c2fc9dc06bbc322ceac2231af", // #4
-  // "0xb29d6c3349853a5e495a60ad169a24d4f342c6449e633cb801bb29b3126b1de9", // #5
-  // "0x8db2e90478f87f166fa9f5b1d80d03724840718e97e223b20f66263838a3b570", // #6
-  // "0x252a42680723e2d03891b940de66f6365be4d7626433a1334abd9a18a73d2980", // #7
+let ADDLAYERBODIESTXHASHES = [
   "0x48cd7e8fc4e773766e0efab4a274a814239444a325e6c08ec33197b3bdf7eb57", // #8
-  // "0x3a679b00a860d4eb01045ef0f5a13255a62da7c47ef712ea3372daf729eea8a5", // #9
-  // "0xe979b098b6585cc1a852bb06e5e3ba532a527e10b66f74a974630a0e4bc19274", // #10
-  // // "0xeeffad25986aa9d00a7d12fe345237e441de89559287289d6691335b86ab9e8e", // Set Linked Traits
 ];
-// DEBUG
-// ADDLAYERTXHASHES = [
-//   "0x48cd7e8fc4e773766e0efab4a274a814239444a325e6c08ec33197b3bdf7eb57", // #8
-// ];
 
 const LAYERNAMES = ["Legendaries", "Mouth", "Eyewear", "Nose", "Headwear", "Eyes", "Clothing", "Lips", "Body", "Skill", "Background"];
-
 
 async function getTokens() {
   const provider = new ethers.providers.JsonRpcProvider();
@@ -36,27 +20,21 @@ async function getTokens() {
   const blockNumber = await provider.getBlockNumber();
   const pop = new ethers.Contract(POPADDRESS, POPABI, provider);
   const totalSupply = await pop.totalSupply();
-  // console.log("totalSupply: " + totalSupply);
   const data = {};
-  console.log("tokenId\thash\tbodyIndex\tSVG");
-  for (let tokenId = 0; tokenId < totalSupply && tokenId < 10; tokenId++) {
+  console.log("tokenId\thash\tbodyIndex"); // \tSVG");
+  for (let tokenId = 0; tokenId < totalSupply; tokenId++) {
     const hash = await pop.tokenIdToHash(tokenId);
     const svg = await pop.hashToSVG(hash);
     const bodyIndex = hash.slice(8 * 3, 8 * 3 + 3);
-    console.log(tokenId + "\t" + hash + "\t" + bodyIndex + "\t" + svg.slice(0, 20));
+    console.log(tokenId + "\t" + hash + "\t" + bodyIndex); // + "\t" + svg.slice(0, 20));
     if (!(bodyIndex in data)) {
       data[bodyIndex] = [];
     }
     data[bodyIndex].push({ tokenId, hash, bodyIndex, svg })
   }
-
-  // console.log(JSON.stringify(data));
   for (const bodyIndex of Object.keys(data).sort()) {
     const tokens = data[bodyIndex];
-    // console.log("bodyIndex: " + bodyIndex + " " + JSON.stringify(tokens));
   }
-
-  // console.log(JSON.stringify(data, null, 2));
   return data;
 }
 
@@ -68,20 +46,16 @@ async function getBodies() {
   const mff = new ethers.Contract(POPADDRESS, POPABI, provider);
 
   const tokens = await getTokens();
-  console.log("tokens: " + tokens);
+  // console.log("tokens: " + tokens);
 
   const data = [];
-  for (const txHash of ADDLAYERTXHASHES) {
+  for (const txHash of ADDLAYERBODIESTXHASHES) {
     const tx = await provider.getTransaction(txHash);
     const txReceipt = await provider.getTransactionReceipt(txHash);
     const block = await provider.getBlock(txReceipt.blockNumber);
     let decodedData = mff.interface.parseTransaction({ data: tx.data, value: tx.value });
     data.push({ tx, txReceipt, decodedData });
   }
-
-  // for (const item of data) {
-  //   console.log(item.tx.data);
-  // }
 
   // console.log("txHash\tlayer\ttuple#\tname\tmimeType\tdata");
   for (const item of data) {
