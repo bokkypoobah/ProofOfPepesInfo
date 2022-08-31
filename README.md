@@ -22,6 +22,9 @@ PNG images extracted from the transaction data can be found in [scripts/images](
 
 See [Layer 8 Body](#layer-8-body-trait-000-beeping-froglet) for a breakdown of all tokenIds by body traits.
 
+
+Note that a few images are not rendered correctly, e.g., Layer 8 Body Trait 027 Beeping Froglet, probably due to some tuple parsing error. Low priority to fix.
+
 <br />
 
 <hr />
