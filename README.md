@@ -410,290 +410,401 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 7 Lips Trait 002 Smug
 <kbd><img src="scripts/svgs/layer7-trait002-smug.svg" width="300px" height="300px" /></kbd>
 
+
+
+
+
 #### Layer 8 Body Trait 000 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait000-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 001 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait001-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 002 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait002-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 003 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait003-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 004 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait004-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 005 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait005-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 006 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait006-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 007 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait007-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 008 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait008-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 009 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait009-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 010 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait010-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 011 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait011-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 012 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait012-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 013 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait013-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 014 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait014-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 015 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait015-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 016 Skeleton
 <kbd><img src="scripts/svgs/layer8-trait016-skeleton.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 017 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait017-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 018 Skeleton
 <kbd><img src="scripts/svgs/layer8-trait018-skeleton.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 019 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait019-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 020 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait020-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 021 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait021-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 022 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait022-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 023 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait023-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 024 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait024-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 025 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait025-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 026 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait026-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 027 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait027-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 028 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait028-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 029 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait029-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 030 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait030-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 031 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait031-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 032 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait032-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 033 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait033-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 034 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait034-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 035 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait035-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 036 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait036-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 037 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait037-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 038 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait038-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 039 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait039-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 040 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait040-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 041 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait041-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 042 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait042-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 043 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait043-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 044 Skeleton
 <kbd><img src="scripts/svgs/layer8-trait044-skeleton.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 045 Skeleton
 <kbd><img src="scripts/svgs/layer8-trait045-skeleton.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 046 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait046-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 047 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait047-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 048 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait048-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 049 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait049-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 050 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait050-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0005.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 051 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait051-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 052 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait052-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 053 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait053-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 054 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait054-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 055 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait055-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 056 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait056-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 057 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait057-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 058 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait058-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 059 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait059-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 060 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait060-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 061 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait061-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 062 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait062-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 063 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait063-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 064 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait064-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 065 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait065-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 066 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait066-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 067 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait067-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 068 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait068-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 069 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait069-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 070 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait070-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 071 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait071-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 072 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait072-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 073 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait073-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 074 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait074-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 075 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait075-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 076 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait076-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0009.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 077 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait077-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 078 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait078-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 079 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait079-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 080 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait080-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 081 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait081-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 082 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait082-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 083 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait083-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 084 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait084-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 085 Dusky Toadlet
 <kbd><img src="scripts/svgs/layer8-trait085-duskytoadlet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 086 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait086-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 087 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait087-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0004.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 088 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait088-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0002.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 089 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait089-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 090 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait090-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 091 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait091-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0000.svg" width="100px" height="100px" /></kbd>
+<kbd><img src="scripts/svgs/pop_0001.svg" width="100px" height="100px" /></kbd>
+<kbd><img src="scripts/svgs/pop_0006.svg" width="100px" height="100px" /></kbd>
+<kbd><img src="scripts/svgs/pop_0007.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 092 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait092-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0003.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 093 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait093-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
 
 #### Layer 8 Body Trait 094 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait094-beepingfroglet.svg" width="300px" height="300px" /></kbd>
+<br />
+<kbd><img src="scripts/svgs/pop_0008.svg" width="100px" height="100px" /></kbd>
+
+
 
 #### Layer 9 Skill Trait 000 Time Travel
 <kbd><img src="scripts/svgs/layer9-trait000-timetravel.svg" width="300px" height="300px" /></kbd>
