@@ -617,7 +617,7 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 8 Body Trait 050 Cliff Chirping Frog
 <kbd><img src="scripts/svgs/layer8-trait050-cliffchirpingfrog.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0005.svg" width="100px" height="100px" /></kbd>
+#5<kbd><img src="scripts/svgs/pop_0005.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 051 Sonoran Desert Toad
 <kbd><img src="scripts/svgs/layer8-trait051-sonorandeserttoad.svg" width="300px" height="300px" /></kbd>
@@ -722,7 +722,7 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 8 Body Trait 076 Eastern Stony Creek Frog
 <kbd><img src="scripts/svgs/layer8-trait076-easternstonycreekfrog.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0009.svg" width="100px" height="100px" /></kbd>
+#9<kbd><img src="scripts/svgs/pop_0009.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 077 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait077-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
@@ -767,12 +767,12 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 8 Body Trait 087 Rocky Mountain Toad
 <kbd><img src="scripts/svgs/layer8-trait087-rockymountaintoad.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0004.svg" width="100px" height="100px" /></kbd>
+#4<kbd><img src="scripts/svgs/pop_0004.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 088 Pacific Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait088-pacifictreefrog.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0002.svg" width="100px" height="100px" /></kbd>
+#2<kbd><img src="scripts/svgs/pop_0002.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 089 Northern Laughing Tree Frog
 <kbd><img src="scripts/svgs/layer8-trait089-northernlaughingtreefrog.svg" width="300px" height="300px" /></kbd>
@@ -785,15 +785,15 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 8 Body Trait 091 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait091-beepingfroglet.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0000.svg" width="100px" height="100px" /></kbd>
-<kbd><img src="scripts/svgs/pop_0001.svg" width="100px" height="100px" /></kbd>
-<kbd><img src="scripts/svgs/pop_0006.svg" width="100px" height="100px" /></kbd>
-<kbd><img src="scripts/svgs/pop_0007.svg" width="100px" height="100px" /></kbd>
+#0<kbd><img src="scripts/svgs/pop_0000.svg" width="100px" height="100px" /></kbd>
+#1<kbd><img src="scripts/svgs/pop_0001.svg" width="100px" height="100px" /></kbd>
+#6<kbd><img src="scripts/svgs/pop_0006.svg" width="100px" height="100px" /></kbd>
+#7<kbd><img src="scripts/svgs/pop_0007.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 092 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait092-beepingfroglet.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0003.svg" width="100px" height="100px" /></kbd>
+#3<kbd><img src="scripts/svgs/pop_0003.svg" width="100px" height="100px" /></kbd>
 
 #### Layer 8 Body Trait 093 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait093-beepingfroglet.svg" width="300px" height="300px" /></kbd>
@@ -802,8 +802,7 @@ hashToMetadata('011003007001016014027001052000006') = [{"trait_type":"Legendarie
 #### Layer 8 Body Trait 094 Beeping Froglet
 <kbd><img src="scripts/svgs/layer8-trait094-beepingfroglet.svg" width="300px" height="300px" /></kbd>
 <br />
-<kbd><img src="scripts/svgs/pop_0008.svg" width="100px" height="100px" /></kbd>
-
+#8<kbd><img src="scripts/svgs/pop_0008.svg" width="100px" height="100px" /></kbd>
 
 
 #### Layer 9 Skill Trait 000 Time Travel

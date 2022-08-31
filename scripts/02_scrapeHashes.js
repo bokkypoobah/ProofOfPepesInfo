@@ -101,7 +101,7 @@ async function getBodies() {
       if (tokenList) {
         for (const token of tokenList) {
           filename = "svgs/pop_" + token.tokenId.toString().padStart(4, '0') + ".svg";
-          console.log('<kbd><img src="scripts/' + filename + '" width="100px" height="100px" /></kbd>');
+          console.log('#' + token.tokenId + '<kbd><img src="scripts/' + filename + '" width="100px" height="100px" /></kbd>');
           const base64data = token.svg.replace(/^.*base64,/, '');
           const data = Buffer.from(base64data, "base64");
           fs.writeFile(filename, data, (err) => {
