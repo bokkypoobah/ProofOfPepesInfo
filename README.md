@@ -20,6 +20,7 @@ node 02_scrapeHashes.js > hashes.txt
 
 PNG images extracted from the transaction data can be found in [scripts/images](scripts/images). The same images are available as SVGs in [script/svgs/](scripts/svgs).
 
+See [Layer 8 Body](#layer-8-body-trait-000-beeping-froglet) for a breakdown of all tokenIds by body traits.
 
 <br />
 
