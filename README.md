@@ -27,6 +27,7 @@ See [Layer 8 Body](#layer-8-body-trait-000-beeping-froglet) for a breakdown of a
 
 Note that a few images are not rendered correctly. These are traits that use the image from another trait. Low priority to fix.
 
+
 <br />
 
 <hr />
