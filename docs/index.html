@@ -100,15 +100,17 @@
       window.app = new Vue({
         el: '#app',
         data: {
-          // name: '',
           info: INFO,
           currentPage: 0,
-          sortOption: 'idasc',
+          sortOption: 'priceasc',
           pageSize: 100,
           currentPage: 1,
           sortOptions: [
             { value: 'idasc', text: '▲ Id' },
             { value: 'iddsc', text: '▼ Id' },
+            { value: 'priceasc', text: '▲ Price' },
+            { value: 'pricedsc', text: '▼ Price' },
+            { value: 'random', text: 'Random' },
           ],
           pageSizes: [
             { value: 10, text: '10' },
@@ -137,7 +139,6 @@
               const price = this.prices[token.tokenId] || null;
               results.push({ ...token, price });
             }
-            console.log(JSON.stringify(results));
             return results;
           },
           filteredSortedCollectionTokens() {
@@ -146,6 +147,34 @@
               results.sort((a, b) => a.tokenId - b.tokenId);
             } else if (this.sortOption == 'iddsc') {
               results.sort((a, b) => b.tokenId - a.tokenId);
+            } else if (this.sortOption == 'priceasc') {
+              results.sort((a, b) => {
+                const pricea = a.price && a.price.price || null;
+                const priceb = b.price && b.price.price || null;
+                if (pricea == priceb) {
+                  return a.tokenId - b.tokenId;
+                } else if (pricea != null && priceb == null) {
+                  return -1;
+                } else if (pricea == null && priceb != null) {
+                  return 1;
+                } else {
+                  return pricea - priceb;
+                }
+              });
+            } else if (this.sortOption == 'pricedsc') {
+              results.sort((a, b) => {
+                const pricea = a.price && a.price.price || null;
+                const priceb = b.price && b.price.price || null;
+                if (pricea == priceb) {
+                  return a.tokenId - b.tokenId;
+                } else if (pricea != null && priceb == null) {
+                  return -1;
+                } else if (pricea == null && priceb != null) {
+                  return 1;
+                } else {
+                  return priceb - pricea;
+                }
+              });
             }
             return results;
           },
@@ -169,10 +198,9 @@
                    // state.sync.error = true;
                    return [];
                 });
-              continuation = /*debug ? null :*/ data.continuation;
+              continuation = data.continuation;
               if (data && data.tokens) {
                 for (const token of data.tokens) {
-                  // console.log(JSON.stringify(token));
                   prices[token.tokenId] = { price: token.price, validUntil: token.validUntil, source: token.source };
                 }
               }
