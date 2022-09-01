@@ -15,6 +15,8 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap-vue.min.css"/>
     <link type="text/css" rel="stylesheet" href="css/bootstrap-vue-icons.min.css"/>
 
+    <script src="js/ethers-5.6.umd.min.js" type="application/javascript"></script>
+
     <!-- Load polyfills to support older browsers -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
 
@@ -35,22 +37,25 @@
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         </b-navbar>
 
-        <b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
+        <b-card no-body no-header class="border-0">
+          <b-card no-body class="p-0 mt-0">
+            <b-card-body class="m-0 p-1">
+              <p>Contract address: {{ contractAddress }}</p>
+              <p>Total Supply: {{ totalSupply }}</p>
+              <p>{{ layerNames }}</p>
+            </b-card-body>
+          </b-card>
+        </b-card>
+        <!--
+        <b-jumbotron v-if="false" header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
           <p>For more information visit our website {{ info[0].address }}</p>
-
           <b-btn variant="primary" href="https://bootstrap-vue.org/">More Info</b-btn>
         </b-jumbotron>
-
-        <b-form-group
-          horizontal
-          :label-cols="4"
-          description="Let us know your name."
-          label="Enter your name"
-        >
+        <b-form-group v-if="false" horizontal :label-cols="4" description="Let us know your name." label="Enter your name">
           <b-form-input v-model.trim="name"></b-form-input>
         </b-form-group>
-
         <b-alert variant="success" :show="showAlert">Hello {{ name }}</b-alert>
+        -->
 
       </b-container>
     </div>
@@ -66,7 +71,17 @@
         computed: {
           showAlert() {
             return this.name.length > 4 ? true : false
-          }
+          },
+          contractAddress() {
+            return INFO[0].address;
+          },
+          totalSupply() {
+            return ethers.BigNumber.from(INFO[0].totalSupply).toNumber();
+          },
+          layerNames() {
+            // console.log(JSON.stringify(INFO[0].tokenData[0].metadata, null, 2));
+            return INFO[0].tokenData[0].metadata.map(t => t.trait_type);
+          },
         }
       })
     </script>
