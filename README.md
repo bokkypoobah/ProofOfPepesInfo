@@ -10,12 +10,14 @@ Transaction cost for the smart contracts and addition of layers is 0.345953646	E
 
 <hr />
 
-In scripts
+In [scripts](scripts):
 
 ```
 node 01_scrapeAddLayerTxs.js > addLayerTxs.txt
 
 node 02_scrapeHashes.js > hashes.txt
+
+node 03_scrapeAndGenerateJSON.js
 ```
 
 PNG images extracted from the transaction data can be found in [scripts/images](scripts/images). The same images are available as SVGs in [script/svgs/](scripts/svgs).
