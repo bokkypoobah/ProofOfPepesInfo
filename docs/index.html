@@ -46,7 +46,7 @@
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-form-select size="sm" disabled v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
+                <b-form-select size="sm" v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
@@ -63,6 +63,9 @@
                 <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
               </div>
             </div>
+            <b-card v-if="layer != null" no-header no-body class="m-0 p-1 border-0">
+              {{ traitOptions }}
+            </b-card>
             <!--
             <p>layerOptions: {{ layerOptions }}</p>
             <p>filteredCollectionTokens: {{ filteredCollectionTokens }}</p>
@@ -162,9 +165,23 @@
             }
             return results;
           },
-          layerNames() {
-            return INFO[0].tokenData[0].metadata.map(t => t.trait_type);
+          traitOptions() {
+            const results = [];
+            console.log("this.layer: " + this.layer);
+            console.log(JSON.stringify(INFO[0].layers[this.layer]));
+            if (this.layer != null) {
+              let traitIndex = 0;
+              for (const trait of INFO[0].layers[this.layer]) {
+                // console.log(JSON.stringify(trait));
+                results.push({ value: traitIndex.toString().padStart(3, '0'), text: trait.name, mimeType: trait.mimeType, base64: trait.base64 });
+                traitIndex++;
+              }
+            }
+            return results;
           },
+          // layerNames() {
+          //   return INFO[0].tokenData[0].metadata.map(t => t.trait_type);
+          // },
           filteredCollectionTokens() {
             const results = [];
             for (const tokenId of Object.keys(INFO[0].tokenData)) {

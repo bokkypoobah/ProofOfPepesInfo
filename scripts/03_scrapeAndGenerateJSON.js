@@ -29,7 +29,7 @@ async function doIt() {
     const contract = new ethers.Contract(collection.address, collection.abi, provider);
     const symbol = await contract.symbol();
     const name = await contract.name();
-    let totalSupply = DEBUG ? 100 : await contract.totalSupply();
+    let totalSupply = DEBUG ? 10 : await contract.totalSupply();
     const tokenData = {};
     for (let tokenId = 0; tokenId < totalSupply; tokenId++) {
       if (tokenId % 10 == 0) {
@@ -42,13 +42,13 @@ async function doIt() {
     }
 
     let layersOk = true;
-    const layers = [];
-    for (let layer = 0; layersOk; layer++) {
-      console.log("Extracting layer: " + layer);
+    let layers = [];
+    for (let layerIndex = 0; layersOk; layerIndex++) {
+      console.log("Extracting layerIndex: " + layerIndex);
       let traitsOk = true;
-      const traits = [];
+      let traits = [];
       for (let trait = 0; traitsOk; trait++) {
-        const traitDetail = await contract.traitDetails(layer, trait);
+        const traitDetail = await contract.traitDetails(layerIndex, trait);
         if (traitDetail[1].length == 0) {
           if (trait == 0) {
             layersOk = false;
@@ -59,28 +59,34 @@ async function doIt() {
           let traitData;
           let buffer;
           try {
-            traitData = await contract.traitData(layer, trait);
+            traitData = await contract.traitData(layerIndex, trait);
             buffer = Buffer.from(traitData.substring(2), "hex");
           } catch (e) {
             console.log("error: " + e);
           }
           traits.push({ name: traitDetail[0], mimeType: traitDetail[1], base64: buffer.toString('base64') });
-          // console.log("layer: " + layer + ", trait: " + trait + ", name: " + traitDetail[0] + ", mimeType: " + traitDetail[1] + ", traitData: " + buffer.toString('base64'));
+          // console.log("layerIndex: " + layerIndex + ", trait: " + trait + ", name: " + traitDetail[0] + ", mimeType: " + traitDetail[1]); // + ", traitData: " + buffer.toString('base64'));
         }
         if (DEBUG) {
           if (trait == 1) {
-            if (layer == 1) {
+            if (layerIndex == 3) {
               layersOk = false;
             }
             traitsOk = false;
           }
         }
-        // console.log("traits: " + JSON.stringify(traits, null, 2));
-        layers.push(traits);
+      }
+      // console.log("traits: " + JSON.stringify(traits, null, 2));
+      if (layersOk) {
+        // console.log("layers.push(" + layerIndex + ")");
+        layers.push({ layerIndex, name: tokenData[0].metadata[layerIndex].trait_type, traits });
+        traits = [];
       }
     }
 
+    // console.log("layers: " + JSON.stringify(layers, null, 2));
     results.push({ address: collection.address, symbol, name, totalSupply, layers, tokenData });
+    layers = [];
   }
   // console.log("results: " + JSON.stringify(results, null, 2));
   const filename = "info.json";
