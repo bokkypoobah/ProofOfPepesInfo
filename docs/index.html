@@ -73,16 +73,34 @@
                   <b-card-text class="text-right">
                     <div class="d-flex justify-content-between m-0 p-0">
                       <div>
-                        <font size="-1">
+                        <font size="-2">
+                          <!--
                           <b-badge variant="light" v-b-popover.hover.bottom="'blah'">{{ token.tokenId }}</b-badge>
+                          -->
+                          <b-button size="sm" :id="'popover-target-' + token.tokenId" variant="link" class="m-0 p-0">
+                            {{ token.tokenId }}
+                          </b-button>
+                          <b-popover :target="'popover-target-' + token.tokenId" placement="right">
+                            <template #title>{{ token.tokenId }}</template>
+                            <b-link :href="'https://opensea.io/assets/ethereum/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in opensea.io'" target="_blank">
+                              OpenSea
+                            </b-link>
+                            <br />
+                            <b-link :href="'https://looksrare.org/collections/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in looksrare.org'" target="_blank">
+                              LooksRare
+                            </b-link>
+                            <br />
+                            <b-link :href="'https://x2y2.io/eth/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in x2y2.io'" target="_blank">
+                              X2Y2
+                            </b-link>
+                          </b-popover>
                         </font>
                       </div>
                       <div class="flex-grow-1">
                       </div>
                       <div>
                         <font v-if="token.price && token.price.price" size="-1">
-                          <b-badge variant="success" v-b-popover.hover.bottom="'blah'">{{ token.price.price }}</b-badge>
-                          <!-- <b-badge :variant="(activity.type == 'Sales') ? 'success' : ((activity.type == 'Asks') ? 'primary' : 'warning')" v-b-popover.hover.bottom="formatETH(event.amount)">{{ formatETHShort(event.amount) }}</b-badge> -->
+                          <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
                         </font>
                       </div>
                     </div>
