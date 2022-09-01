@@ -56,17 +56,33 @@
                   <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
                 </div>
               </div>
+              <!--
               <p>Contract address: {{ contractAddress }}</p>
               <p>Total Supply: {{ totalSupply }}</p>
               <p>Layers: {{ layerNames }}</p>
-              <!--
-              <p>filteredSortedCollectionTokens: {{ filteredSortedCollectionTokens.slice(0, 3) }}</p>
-              <p>pagedFilteredCollectionTokens: {{ pagedFilteredCollectionTokens }}</p>
               -->
               <b-card-group deck class="m-1 ml-0 p-0">
                 <div v-for="token in pagedFilteredCollectionTokens">
                   <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
                     <b-avatar rounded size="7rem" :src="token.svg"></b-avatar>
+                    <b-card-text class="text-right">
+                      <div class="d-flex justify-content-between m-0 p-0">
+                        <div>
+                          <font size="-1">
+                            <b-badge variant="light" v-b-popover.hover.bottom="'blah'">{{ token.tokenId }}</b-badge>
+                          </font>
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+                        <div>
+                          <!--
+                          <font size="-1">
+                            <b-badge :variant="(activity.type == 'Sales') ? 'success' : ((activity.type == 'Asks') ? 'primary' : 'warning')" v-b-popover.hover.bottom="formatETH(event.amount)">{{ formatETHShort(event.amount) }}</b-badge>
+                          </font>
+                          -->
+                        </div>
+                      </div>
+                    </b-card-text>
                   </b-card>
                 </div>
               </b-card-group>
