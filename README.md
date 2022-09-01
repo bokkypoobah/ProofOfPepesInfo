@@ -8,6 +8,10 @@ Transaction cost for the smart contracts and addition of layers is 0.345953646	E
 
 <br />
 
+See [https://bokkypoobah.github.io/ProofOfPepesInfo/](https://bokkypoobah.github.io/ProofOfPepesInfo/).
+
+<br />
+
 <hr />
 
 ### Generating PNG, SVG and Data For This Page
