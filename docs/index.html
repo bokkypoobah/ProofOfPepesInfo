@@ -40,10 +40,13 @@
         <b-card no-body class="p-0 mt-0">
           <b-card-body class="m-0 p-1">
             <div class="d-flex flex-wrap m-0 p-0">
+              <div class="mt-1 pr-1">
+                <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+              </div>
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+                <b-form-select size="sm" disabled v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
@@ -61,6 +64,7 @@
               </div>
             </div>
             <!--
+            <p>layerOptions: {{ layerOptions }}</p>
             <p>filteredCollectionTokens: {{ filteredCollectionTokens }}</p>
             <p>Contract address: {{ contractAddress }}</p>
             <p>Total Supply: {{ totalSupply }}</p>
@@ -138,6 +142,7 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
+          layer: null,
           prices: {},
         },
         computed: {
@@ -146,6 +151,16 @@
           },
           totalSupply() {
             return ethers.BigNumber.from(INFO[0].totalSupply).toNumber();
+          },
+          layerOptions() {
+            const results = [];
+            let layerIndex = 0;
+            results.push({ value: null, text: '(select layer)' });
+            for (const item of INFO[0].tokenData[0].metadata) {
+              results.push({ value: layerIndex, text: item.trait_type });
+              layerIndex++;
+            }
+            return results;
           },
           layerNames() {
             return INFO[0].tokenData[0].metadata.map(t => t.trait_type);
