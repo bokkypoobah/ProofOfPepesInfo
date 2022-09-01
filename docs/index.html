@@ -157,18 +157,16 @@
           },
           layerOptions() {
             const results = [];
-            let layerIndex = 0;
             results.push({ value: null, text: '(select layer)' });
-            for (const item of INFO[0].tokenData[0].metadata) {
-              results.push({ value: layerIndex, text: item.trait_type });
-              layerIndex++;
+            for (const item of INFO[0].layers) {
+              results.push({ value: item.layerIndex, text: item.name });
             }
             return results;
           },
           traitOptions() {
             const results = [];
-            console.log("this.layer: " + this.layer);
-            console.log("INFO[0].layers[this.layer]: " + JSON.stringify(INFO[0].layers[this.layer]));
+            // console.log("this.layer: " + this.layer);
+            // console.log("INFO[0].layers[this.layer]: " + JSON.stringify(INFO[0].layers[this.layer]));
             if (this.layer != null) {
               let traitIndex = 0;
               for (const trait of INFO[0].layers[this.layer].traits) {
