@@ -168,10 +168,10 @@
           traitOptions() {
             const results = [];
             console.log("this.layer: " + this.layer);
-            console.log(JSON.stringify(INFO[0].layers[this.layer]));
+            console.log("INFO[0].layers[this.layer]: " + JSON.stringify(INFO[0].layers[this.layer]));
             if (this.layer != null) {
               let traitIndex = 0;
-              for (const trait of INFO[0].layers[this.layer]) {
+              for (const trait of INFO[0].layers[this.layer].traits) {
                 // console.log(JSON.stringify(trait));
                 results.push({ value: traitIndex.toString().padStart(3, '0'), text: trait.name, mimeType: trait.mimeType, base64: trait.base64 });
                 traitIndex++;
