@@ -37,7 +37,7 @@
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         </b-navbar>
 
-        <b-card no-body no-header class="border-0">
+        <!-- <b-card no-body no-header class="border-0"> -->
           <b-card no-body class="p-0 mt-0">
             <b-card-body class="m-0 p-1">
               <div class="d-flex flex-wrap m-0 p-0">
@@ -59,11 +59,20 @@
               <p>Contract address: {{ contractAddress }}</p>
               <p>Total Supply: {{ totalSupply }}</p>
               <p>Layers: {{ layerNames }}</p>
+              <!--
               <p>filteredSortedCollectionTokens: {{ filteredSortedCollectionTokens.slice(0, 3) }}</p>
               <p>pagedFilteredCollectionTokens: {{ pagedFilteredCollectionTokens }}</p>
+              -->
+              <b-card-group deck class="m-1 ml-0 p-0">
+                <div v-for="token in pagedFilteredCollectionTokens">
+                  <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
+                    <b-avatar rounded size="7rem" :src="token.svg"></b-avatar>
+                  </b-card>
+                </div>
+              </b-card-group>
             </b-card-body>
           </b-card>
-        </b-card>
+        <!-- </b-card> -->
         <!--
         <b-jumbotron v-if="false" header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
           <p>For more information visit our website {{ info[0].address }}</p>
@@ -120,8 +129,8 @@
             const results = [];
             for (const tokenId of Object.keys(INFO[0].tokenData)) {
               const token = INFO[0].tokenData[tokenId];
-              console.log(JSON.stringify(token));
-              results.push({ tokenId })
+              // console.log(JSON.stringify(token));
+              results.push(token);
             }
             return results;
           },
