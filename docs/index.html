@@ -175,6 +175,10 @@
                   return priceb - pricea;
                 }
               });
+            } else {
+              results.sort(() => {
+                return Math.random() - 0.5;
+              });
             }
             return results;
           },
