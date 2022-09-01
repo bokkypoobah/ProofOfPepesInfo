@@ -63,8 +63,29 @@
                 <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
               </div>
             </div>
-            <b-card v-if="layer != null" no-header no-body class="m-0 p-1 border-0">
-              {{ traitOptions }}
+            <b-card v-if="layer != null" no-header no-body class="m-0 mt-1 p-1 border-1">
+              <b-card-group deck class="m-1 ml-0 p-0">
+                <div v-for="trait in traitOptions">
+                  <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
+                    <b-avatar button @click="toggleTrait(layer, trait.value)" rounded size="7rem" :src="'data:image/' + trait.mimeType + ';base64,' + trait.base64">
+                      <template v-if="selectedTraits[layer] && selectedTraits[layer][trait.value]" #badge><b-icon icon="check"></b-icon></template>
+                    </b-avatar>
+                    <b-card-text class="text-right">
+                      <div class="d-flex justify-content-between m-0 p-0">
+                        <div>
+                          <font size="-2">
+                            <b-badge variant="light" v-b-popover.hover.bottom="'blah'">{{ trait.text }}</b-badge>
+                          </font>
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+                        <div>
+                        </div>
+                      </div>
+                    </b-card-text>
+                  </b-card>
+                </div>
+              </b-card-group>
             </b-card>
             <!--
             <p>layerOptions: {{ layerOptions }}</p>
@@ -145,8 +166,9 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
-          layer: null,
+          layer: 8, // null,
           prices: {},
+          selectedTraits: {},
         },
         computed: {
           contractAddress() {
@@ -165,12 +187,9 @@
           },
           traitOptions() {
             const results = [];
-            // console.log("this.layer: " + this.layer);
-            // console.log("INFO[0].layers[this.layer]: " + JSON.stringify(INFO[0].layers[this.layer]));
             if (this.layer != null) {
               let traitIndex = 0;
               for (const trait of INFO[0].layers[this.layer].traits) {
-                // console.log(JSON.stringify(trait));
                 results.push({ value: traitIndex.toString().padStart(3, '0'), text: trait.name, mimeType: trait.mimeType, base64: trait.base64 });
                 traitIndex++;
               }
@@ -235,6 +254,20 @@
           },
         },
         methods: {
+          toggleTrait(layer, trait) {
+            if (!this.selectedTraits[layer]) {
+              Vue.set(this.selectedTraits, layer, {});
+            }
+            if (this.selectedTraits[layer][trait]) {
+              Vue.delete(this.selectedTraits[layer], trait);
+              if (Object.keys(this.selectedTraits[layer]) == 0) {
+                Vue.delete(this.selectedTraits, layer);
+              }
+            } else {
+              Vue.set(this.selectedTraits[layer], trait, true);
+            }
+            // console.log("toggleTrait - layer: " + layer + ", trait: " + trait + ", " + JSON.stringify(this.selectedTraits[layer]));
+          },
           async retrievePrices() {
             let continuation = null;
             let prices = {};
