@@ -46,6 +46,12 @@
                 <div class="mt-1 pr-1">
                   <b-form-select size="sm" v-model="sortOption" :options="sortOptions" v-b-popover.hover.top="'Yeah. Sort'"></b-form-select>
                 </div>
+                <div class="mt-1 pr-1">
+                  <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedCollectionTokens.length }}</font>
+                </div>
+                <div class="mt-1 pr-1">
+                  <b-pagination size="sm" v-model="currentPage" :total-rows="filteredSortedCollectionTokens.length" :per-page="pageSize" style="height: 0;"></b-pagination>
+                </div>
                 <div class="mt-1 pl-1">
                   <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
                 </div>
