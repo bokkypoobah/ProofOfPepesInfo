@@ -65,13 +65,13 @@
       window.app = new Vue({
         el: '#app',
         data: {
-          name: '',
+          // name: '',
           info: INFO,
         },
         computed: {
-          showAlert() {
-            return this.name.length > 4 ? true : false
-          },
+          // showAlert() {
+          //   return this.name.length > 4 ? true : false
+          // },
           contractAddress() {
             return INFO[0].address;
           },
