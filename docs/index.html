@@ -243,7 +243,11 @@
                   selectedTokenIds = selectedTokenIds.filter(tokenId => thisTraitTokenIds.includes(tokenId));
                 }
               }
-              results = Object.values(selectedTokenIds).map(tokenId => INFO[0].tokenData[tokenId]);
+              for (const tokenId of selectedTokenIds) {
+                const token = INFO[0].tokenData[tokenId];
+                const price = this.prices[token.tokenId] || null;
+                results.push({ ...token, price });
+              }
             }
             return results;
           },
