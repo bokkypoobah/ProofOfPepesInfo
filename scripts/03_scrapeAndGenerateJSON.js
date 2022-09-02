@@ -64,7 +64,11 @@ async function doIt() {
           } catch (e) {
             console.log("error: " + e);
           }
-          traits.push({ name: traitDetail[0], mimeType: traitDetail[1], base64: buffer.toString('base64') });
+
+          const content = '<svg width="1200" height="1200" viewBox="0 0 1200 1200" version="1.2" xmlns="http://www.w3.org/2000/svg" style="background-color:transparent;background-image:url(data:' + traitDetail[1] + ';base64,' +
+            buffer.toString('base64') + ');background-repeat:no-repeat;background-size:contain;background-position:center;image-rendering:-webkit-optimize-contrast;-ms-interpolation-mode:nearest-neighbor;image-rendering:-moz-crisp-edges;image-rendering:pixelated;"></svg>';
+          const contentBuffer = Buffer.from(content);
+          traits.push({ name: traitDetail[0], mimeType: traitDetail[1], base64: buffer.toString('base64'), svg: 'data:image/svg+xml;base64,' + contentBuffer.toString('base64') });
           // console.log("layerIndex: " + layerIndex + ", trait: " + trait + ", name: " + traitDetail[0] + ", mimeType: " + traitDetail[1]); // + ", traitData: " + buffer.toString('base64'));
         }
         if (DEBUG) {
