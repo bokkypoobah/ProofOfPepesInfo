@@ -345,6 +345,7 @@
               // state.sync.total = state.sync.completed;
             } while (continuation != null /*&& !state.halt && !state.sync.error */);
             this.prices = prices;
+            localStorage.setItem('popPrices', JSON.stringify(prices));
           },
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
@@ -388,6 +389,7 @@
                 }
               }
               this.owners = owners;
+              localStorage.setItem('popOwners', JSON.stringify(owners));
               const ensMap = {};
               for (let i in owners) {
                 const owner = owners[i];
@@ -416,8 +418,20 @@
               }
               console.log("ensMap: " + JSON.stringify(ensMap));
               this.ensMap = ensMap;
+              localStorage.setItem('popENSMap', JSON.stringify(ensMap));
             }
           },
+        },
+        mounted() {
+          if (localStorage.getItem('popOwners')) {
+            this.owners = JSON.parse(localStorage.getItem('popOwners'));
+          }
+          if (localStorage.getItem('popENSMap')) {
+            this.ensMap = JSON.parse(localStorage.getItem('popENSMap'));
+          }
+          if (localStorage.getItem('popPrices')) {
+            this.prices = JSON.parse(localStorage.getItem('popPrices'));
+          }
         },
       })
     </script>
