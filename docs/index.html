@@ -170,7 +170,7 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
-          layer: 1, // null,
+          layer: null,
           prices: {},
           selectedTraits: {},
         },
@@ -200,23 +200,20 @@
             }
             return results;
           },
-          // layerNames() {
-          //   return INFO[0].tokenData[0].metadata.map(t => t.trait_type);
-          // },
           collectionTokensAttributesWithCounts() {
             const collator = {};
             for (const tokenId of Object.keys(INFO[0].tokenData)) {
               const token = INFO[0].tokenData[tokenId];
               const traits = token.hash.match(/.{1,3}/g);
               for (let layerIndex in traits) {
-                const value = traits[layerIndex];
+                const traitIndex = traits[layerIndex];
                 if (!collator[layerIndex]) {
                   collator[layerIndex] = {};
                 }
-                if (!collator[layerIndex][value]) {
-                  collator[layerIndex][value] = [tokenId];
+                if (!collator[layerIndex][traitIndex]) {
+                  collator[layerIndex][traitIndex] = [tokenId];
                 } else {
-                  collator[layerIndex][value].push(tokenId);
+                  collator[layerIndex][traitIndex].push(tokenId);
                 }
               }
             }
