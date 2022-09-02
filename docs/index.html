@@ -67,7 +67,14 @@
               <b-card-group deck class="m-1 ml-0 p-0">
                 <div v-for="trait in traitOptions">
                   <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
+
+                    <!--
                     <b-avatar button @click="toggleTrait(layer, trait.value)" rounded size="7rem" :src="'data:image/' + trait.mimeType + ';base64,' + trait.base64">
+                      <template v-if="selectedTraits[layer] && selectedTraits[layer][trait.value]" #badge><b-icon icon="check"></b-icon></template>
+                    </b-avatar>
+                  -->
+
+                    <b-avatar button @click="toggleTrait(layer, trait.value)" rounded size="7rem" :src="getSVG(layer, trait.value)">
                       <template v-if="selectedTraits[layer] && selectedTraits[layer][trait.value]" #badge><b-icon icon="check"></b-icon></template>
                     </b-avatar>
                     <b-card-text class="text-right">
@@ -169,7 +176,7 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
-          layer: null,
+          layer: 0, // null,
           prices: {},
           selectedTraits: {},
         },
@@ -337,6 +344,14 @@
             } while (continuation != null /*&& !state.halt && !state.sync.error */);
             this.prices = prices;
           },
+          getSVG(layerIndex, traitIndex) {
+            // console.log("traitIndex: " + parseInt(traitIndex));
+            // console.log(JSON.stringify(INFO[0].layers[layerIndex].traits[parseInt(traitIndex)], null, 2));
+            // 'data:image/' + trait.mimeType + ';base64,' + trait.base64"
+
+            // return layerIndex + ' ' + traitIndex;
+            return 'data:image/' + INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].mimeType + ';base64,' + INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].base64;
+          }
         },
       })
     </script>
