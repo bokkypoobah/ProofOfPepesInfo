@@ -349,7 +349,7 @@
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
           },
-          owner(tokenId, length = 16) {
+          owner(tokenId, length = 24) {
             const address = this.owners[tokenId] || null;
             // console.log("tokenId: " + tokenId + ", owner: " + address);
             if (address in this.ensMap) {
