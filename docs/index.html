@@ -17,6 +17,7 @@
     <script src="js/bootstrap-vue.min.js"></script>
     <script src="js/bootstrap-vue-icons.min.js"></script>
     <script src="js/ethers-5.6.umd.min.js" type="application/javascript"></script>
+    <script src="deploymentData.js"></script>
     <script src="info.js"></script>
   </head>
   <body>
@@ -35,6 +36,9 @@
             <div class="d-flex flex-wrap m-0 p-0">
               <div class="mt-1 pr-1">
                 <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+              </div>
+              <div class="mt-1 pr-1">
+                <b-button size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
@@ -93,7 +97,16 @@
             <b-card-group deck class="m-1 ml-0 p-0">
               <div v-for="token in pagedFilteredCollectionTokens">
                 <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
-                  <b-avatar rounded size="7rem" :src="token.svg"></b-avatar>
+                  <b-avatar button rounded size="7rem" :src="token.svg"></b-avatar>
+                  <!--
+                  <b-avatar button rounded size="7rem" :src="token.svg" badge-left badge-top badge-offset="-6px" badge-variant="transparent">
+                    <template #badge>
+                      <font size="-2">
+                        {{ token.tokenId }}
+                      </font>
+                    </template>
+                  </b-avatar>
+                  -->
                   <b-card-text class="text-right">
                     <div class="d-flex justify-content-between m-0 p-0">
                       <div>
@@ -160,6 +173,7 @@
           ],
           layer: null,
           prices: {},
+          owners: {},
           selectedTraits: {},
         },
         computed: {
@@ -326,7 +340,68 @@
           },
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
-          }
+          },
+          async retrieveOwners() {
+            console.log("retrieveOwners");
+            let connected = true;
+            if (!window.ethereum) {
+              alert("Please use the https://metamask.io addon with Firefox, Chromium, Opera or Chrome, or any other other web3 browser, for web3 data retrieval. And refresh!");
+              connected = false;
+            } else if (!window.ethereum.isConnected()) {
+              try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                connected = window.ethereum.isConnected();
+              } catch (e) {
+                console.log("window.ethereum.request error: " + e.message);
+                connected = false;
+              }
+            }
+            if (connected) {
+              const provider = new ethers.providers.Web3Provider(window.ethereum);
+              const network = await provider.getNetwork();
+              const erc721Helper = new ethers.Contract(ERC721HELPERADDRESS, ERC721HELPERABI, provider);
+              const owners = {};
+              const NFTOWNERBATCHSIZE = 200; // 500 OK
+              const generateRange = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+              for (let i = 0; i < this.totalSupply && i < 300; i += NFTOWNERBATCHSIZE) {
+                const to = (i + NFTOWNERBATCHSIZE > this.totalSupply) ? this.totalSupply : i + NFTOWNERBATCHSIZE;
+                const tokenIds = generateRange(i, to, 1);
+                const ownersResult = await erc721Helper.ownersByTokenIds(this.contractAddress, tokenIds);
+                for (let j = 0; j < ownersResult[0].length; j++) {
+                  owners[tokenIds[j]] = ownersResult[1][j];
+                }
+              }
+              this.owners = owners;
+              const ensMap = {};
+              for (let i in owners) {
+                const owner = owners[i].toLowerCase();
+                if (!ensMap[owner]) {
+                  ensMap[owner] = owners[i];
+                }
+              }
+              // console.log("ensMap: " + JSON.stringify(ensMap));
+              let addresses = Object.keys(ensMap);
+              // console.log("addresses: " + JSON.stringify(addresses));
+              const ensReverseRecordsContract = new ethers.Contract(ENSREVERSERECORDSADDRESS, ENSREVERSERECORDSABI, provider);
+              const ENSOWNERBATCHSIZE = 200; // 500 fails occassionally
+              for (let i = 0; i < addresses.length; i += ENSOWNERBATCHSIZE) {
+              //   this.processing = "RETRIEVING LIVE ENS REVERSE RECORDS FROM THE ETHEREUM MAINNET: " + ethers.utils.commify(i) + " OF " + ethers.utils.commify(addresses.length);
+                const batch = addresses.slice(i, parseInt(i) + ENSOWNERBATCHSIZE);
+                // console.log("Batch: " + i + " " + addresses[i] + " " + batch);
+                // console.log(JSON.stringify(batch));
+                const allnames = await ensReverseRecordsContract.getNames(batch);
+              //   // NOT CHECKING ADDRESSES AS THE ADDRESSES CAME FROM A CONTRACT. AND account. const validNames = allnames.filter((n) => normalize(n) === n );
+                for (let j = 0; j < batch.length; j++) {
+                  const address = batch[j];
+                  const name = allnames[j];
+                  ensMap[address] = name != null && name.length > 0 ? name : address;
+              //     // const normalized = normalize(address);
+                }
+              }
+              console.log("ensMap: " + JSON.stringify(ensMap));
+              // this.ensMap = ensMap;
+            }
+          },
         },
       })
     </script>
