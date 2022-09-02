@@ -35,15 +35,18 @@
           <b-card-body class="m-0 p-1">
             <div class="d-flex flex-wrap m-0 p-0">
               <div class="mt-1 pr-1">
-                <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+                <b-form-input type="text" size="sm" v-model.trim="searchAccount" debounce="600" placeholder="🔍 ens1, addy1, ..."></b-form-input>
               </div>
               <div class="mt-1 pr-1">
-                <b-button size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
+                <b-form-select size="sm" v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-form-select size="sm" v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
+                <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+              </div>
+              <div class="mt-1 pr-1">
+                <b-button size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
@@ -178,6 +181,7 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
+          searchAccount: null,
           layer: null,
           prices: {},
           owners: {},
@@ -230,13 +234,13 @@
             return collator;
           },
           filteredCollectionTokens() {
-            let results = this.selectedTraits ? [] : [];
+            let stage1Data = this.selectedTraits ? [] : [];
             console.log("filteredCollectionTokens: " + JSON.stringify(this.selectedTraits));
             if (Object.keys(this.selectedTraits).length == 0) {
               for (const tokenId of Object.keys(INFO[0].tokenData)) {
                 const token = INFO[0].tokenData[tokenId];
                 const price = this.prices[token.tokenId] || null;
-                results.push({ ...token, price });
+                stage1Data.push({ ...token, price });
               }
             } else {
               let selectedTokenIds = [];
@@ -256,7 +260,26 @@
               for (const tokenId of selectedTokenIds) {
                 const token = INFO[0].tokenData[tokenId];
                 const price = this.prices[token.tokenId] || null;
-                results.push({ ...token, price });
+                stage1Data.push({ ...token, price });
+              }
+            }
+            let results = stage1Data;
+            if (this.searchAccount != null && this.searchAccount.length > 0) {
+              const searchAccounts = this.searchAccount.split(/[, \t\n]+/).map(s => s.toLowerCase());
+              results = [];
+              for (let i in stage1Data) {
+                const d = stage1Data[i];
+                const owner = this.owners[d.tokenId] || null;
+                const ensName = owner == null ? null : this.ensMap[owner];
+                for (searchAccount of searchAccounts) {
+                  if (owner != null && owner.includes(searchAccount)) {
+                    results.push(d);
+                    break;
+                  } else if (ensName != null && ensName.includes(searchAccount)) {
+                    results.push(d);
+                    break;
+                  }
+                }
               }
             }
             return results;
