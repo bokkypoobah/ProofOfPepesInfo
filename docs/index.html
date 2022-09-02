@@ -349,7 +349,7 @@
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
           },
-          owner(tokenId, length = 8) {
+          owner(tokenId, length = 16) {
             const address = this.owners[tokenId] || null;
             // console.log("tokenId: " + tokenId + ", owner: " + address);
             if (address in this.ensMap) {
@@ -379,7 +379,7 @@
               const owners = {};
               const NFTOWNERBATCHSIZE = 200; // 500 OK
               const generateRange = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
-              for (let i = 0; i < this.totalSupply && i < 300; i += NFTOWNERBATCHSIZE) {
+              for (let i = 0; i < this.totalSupply; i += NFTOWNERBATCHSIZE) {
                 const to = (i + NFTOWNERBATCHSIZE > this.totalSupply) ? this.totalSupply : i + NFTOWNERBATCHSIZE;
                 const tokenIds = generateRange(i, to, 1);
                 const ownersResult = await erc721Helper.ownersByTokenIds(this.contractAddress, tokenIds);
