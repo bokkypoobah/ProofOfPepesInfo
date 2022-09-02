@@ -130,6 +130,10 @@
                             <b-link :href="'https://x2y2.io/eth/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in x2y2.io'" target="_blank">
                               X2Y2
                             </b-link>
+                            <br />
+                            <b-link :href="'https://app.indeliblelabs.io/api/png/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'Server generated PNG'" target="_blank">
+                              PNG Image
+                            </b-link>
                           </b-popover>
                         </font>
                       </div>
