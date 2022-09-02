@@ -64,7 +64,6 @@
               </div>
             </div>
             <b-card v-if="layer != null" no-header no-body class="m-0 mt-1 p-1 border-1">
-              <!-- {{ JSON.stringify(collectionTokensAttributesWithCounts).substring(0, 1000) }} -->
               <b-card-group deck class="m-1 ml-0 p-0">
                 <div v-for="trait in traitOptions">
                   <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
@@ -82,7 +81,7 @@
                         </div>
                         <div>
                           <font size="-2">
-                            <b-badge variant="light" v-b-popover.hover.bottom="'#tokens'">{{ collectionTokensAttributesWithCounts[layer][trait.value] && collectionTokensAttributesWithCounts[layer][trait.value].length }}</b-badge>
+                            <b-badge variant="light" v-b-popover.hover.bottom="'#tokens'">{{ collectionTokensAttributesWithCounts[layer][trait.value] && collectionTokensAttributesWithCounts[layer][trait.value].length || 0 }}</b-badge>
                           </font>
                         </div>
                       </div>
@@ -170,7 +169,7 @@
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
           ],
-          layer: null,
+          layer: 0, // null,
           prices: {},
           selectedTraits: {},
         },
@@ -221,11 +220,30 @@
             return collator;
           },
           filteredCollectionTokens() {
-            const results = [];
-            for (const tokenId of Object.keys(INFO[0].tokenData)) {
-              const token = INFO[0].tokenData[tokenId];
-              const price = this.prices[token.tokenId] || null;
-              results.push({ ...token, price });
+            let results = this.selectedTraits ? [] : [];
+            console.log("filteredCollectionTokens: " + JSON.stringify(this.selectedTraits));
+            if (Object.keys(this.selectedTraits).length == 0) {
+              for (const tokenId of Object.keys(INFO[0].tokenData)) {
+                const token = INFO[0].tokenData[tokenId];
+                const price = this.prices[token.tokenId] || null;
+                results.push({ ...token, price });
+              }
+            } else {
+              let selectedTokenIds = [];
+              for (const [trait, value] of Object.entries(this.selectedTraits)) {
+                console.log(trait + ' ' + JSON.stringify(value));
+                let thisTraitTokenIds = [];
+                for (const selectedValue of Object.keys(value)) {
+                  const tokenIds = this.collectionTokensAttributesWithCounts[trait][selectedValue] || [];
+                  thisTraitTokenIds = [...thisTraitTokenIds, ...tokenIds];
+                }
+                if (selectedTokenIds.length == 0) {
+                  selectedTokenIds = thisTraitTokenIds;
+                } else {
+                  selectedTokenIds = selectedTokenIds.filter(tokenId => thisTraitTokenIds.includes(tokenId));
+                }
+              }
+              results = Object.values(selectedTokenIds).map(tokenId => INFO[0].tokenData[tokenId]);
             }
             return results;
           },
