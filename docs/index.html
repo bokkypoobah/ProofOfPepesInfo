@@ -96,8 +96,8 @@
             -->
             <b-card-group deck class="m-1 ml-0 p-0">
               <div v-for="token in pagedFilteredCollectionTokens">
-                <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
-                  <b-avatar button rounded size="7rem" :src="token.svg"></b-avatar>
+                <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 15rem;">
+                  <b-avatar button rounded size="15rem" :src="token.svg"></b-avatar>
                   <!--
                   <b-avatar button rounded size="7rem" :src="token.svg" badge-left badge-top badge-offset="-6px" badge-variant="transparent">
                     <template #badge>
@@ -133,7 +133,14 @@
                       <div class="flex-grow-1">
                       </div>
                       <div>
-                        <font v-if="token.price && token.price.price" size="-1">
+                        <font size="-1">
+                          <b-badge variant="transparent" v-b-popover.hover.bottom="'On '">{{ owner(token.tokenId) }}</b-badge>
+                        </font>
+                      </div>
+                      <div class="flex-grow-1">
+                      </div>
+                      <div v-if="token.price && token.price.price">
+                        <font size="-1">
                           <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
                         </font>
                       </div>
@@ -174,6 +181,7 @@
           layer: null,
           prices: {},
           owners: {},
+          ensMap: {},
           selectedTraits: {},
         },
         computed: {
@@ -341,6 +349,14 @@
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
           },
+          owner(tokenId, length = 8) {
+            const address = this.owners[tokenId] || null;
+            // console.log("tokenId: " + tokenId + ", owner: " + address);
+            if (address in this.ensMap) {
+              return this.ensMap[address].substring(0, length);
+            }
+            return address == null ? null : address.substring(0, length);
+          },
           async retrieveOwners() {
             console.log("retrieveOwners");
             let connected = true;
@@ -374,9 +390,9 @@
               this.owners = owners;
               const ensMap = {};
               for (let i in owners) {
-                const owner = owners[i].toLowerCase();
+                const owner = owners[i];
                 if (!ensMap[owner]) {
-                  ensMap[owner] = owners[i];
+                  ensMap[owner] = owner;
                 }
               }
               // console.log("ensMap: " + JSON.stringify(ensMap));
@@ -399,7 +415,7 @@
                 }
               }
               console.log("ensMap: " + JSON.stringify(ensMap));
-              // this.ensMap = ensMap;
+              this.ensMap = ensMap;
             }
           },
         },
