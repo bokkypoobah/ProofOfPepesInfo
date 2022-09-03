@@ -276,7 +276,7 @@
                 const owner = this.owners[d.tokenId] || null;
                 const ensName = owner == null ? null : this.ensMap[owner];
                 for (searchAccount of searchAccounts) {
-                  if (owner != null && owner.includes(searchAccount)) {
+                  if (owner != null && owner.toLowerCase().includes(searchAccount)) {
                     results.push(d);
                     break;
                   } else if (ensName != null && ensName.includes(searchAccount)) {
