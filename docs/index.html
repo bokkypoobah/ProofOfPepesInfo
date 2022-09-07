@@ -76,13 +76,31 @@
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-form-select size="sm" v-model="sortOption" :options="sortOptions" v-b-popover.hover.top="'Yeah. Sort'"></b-form-select>
+                <b-button size="sm" :pressed.sync="ownerView" variant="link" v-b-popover.hover.top="'Owner view'"><span v-if="ownerView"><b-icon-people-fill shift-v="+1" font-scale="1.0"></b-icon-people-fill></span><span v-else><b-icon-people shift-v="+1" font-scale="1.0"></b-icon-people></span></b-button>
               </div>
               <div class="mt-1 pr-1">
-                <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedCollectionTokens.length }}</font>
+                <div v-if="ownerView">
+                  <b-form-select size="sm" v-model="ownerSortOption" :options="ownerSortOptions" v-b-popover.hover.top="'Yeah. Sort'"></b-form-select>
+                </div>
+                <div v-else>
+                  <b-form-select size="sm" v-model="sortOption" :options="sortOptions" v-b-popover.hover.top="'Yeah. Sort'"></b-form-select>
+                </div>
               </div>
               <div class="mt-1 pr-1">
-                <b-pagination size="sm" v-model="currentPage" :total-rows="filteredSortedCollectionTokens.length" :per-page="pageSize" style="height: 0;"></b-pagination>
+                <div v-if="ownerView">
+                  <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedTokensByOwners.length }}</font>
+                </div>
+                <div v-else>
+                  <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedCollectionTokens.length }}</font>
+                </div>
+              </div>
+              <div class="mt-1 pr-1">
+                <div v-if="ownerView">
+                  <b-pagination size="sm" v-model="ownerCurrentPage" :total-rows="filteredSortedTokensByOwners.length" :per-page="pageSize" style="height: 0;"></b-pagination>
+                </div>
+                <div v-else>
+                  <b-pagination size="sm" v-model="currentPage" :total-rows="filteredSortedCollectionTokens.length" :per-page="pageSize" style="height: 0;"></b-pagination>
+                </div>
               </div>
               <div class="mt-1 pl-1">
                 <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
@@ -122,68 +140,110 @@
             <p>Total Supply: {{ totalSupply }}</p>
             <p>Layers: {{ layerNames }}</p>
             -->
-            <!--
-            <p>{{ filteredTokensByOwners }}</p>
-            -->
-            <b-card-group deck class="m-1 ml-0 p-0">
-              <div v-for="token in pagedFilteredCollectionTokens">
-                <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 15rem;">
-                  <b-avatar button rounded size="15rem" :src="token.svg"></b-avatar>
-                  <!--
-                  <b-avatar button rounded size="7rem" :src="token.svg" badge-left badge-top badge-offset="-6px" badge-variant="transparent">
-                    <template #badge>
-                      <font size="-2">
-                        {{ token.tokenId }}
-                      </font>
-                    </template>
-                  </b-avatar>
-                  -->
-                  <b-card-text class="text-right">
-                    <div class="d-flex justify-content-between m-0 p-0">
-                      <div>
+            <div v-if="!ownerView">
+              <b-card-group deck class="m-1 ml-0 p-0">
+                <div v-for="token in pagedFilteredCollectionTokens">
+                  <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 15rem;">
+                    <b-avatar button rounded size="15rem" :src="token.svg"></b-avatar>
+                    <!--
+                    <b-avatar button rounded size="7rem" :src="token.svg" badge-left badge-top badge-offset="-6px" badge-variant="transparent">
+                      <template #badge>
                         <font size="-2">
-                          <b-button size="sm" :id="'popover-target-' + token.tokenId" variant="link" class="m-0 p-0">
-                            {{ token.tokenId }}
-                          </b-button>
-                          <b-popover :target="'popover-target-' + token.tokenId" placement="right">
-                            <template #title>{{ token.tokenId }}</template>
-                            <b-link :href="'https://opensea.io/assets/ethereum/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in opensea.io'" target="_blank">
-                              OpenSea
-                            </b-link>
-                            <br />
-                            <b-link :href="'https://looksrare.org/collections/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in looksrare.org'" target="_blank">
-                              LooksRare
-                            </b-link>
-                            <br />
-                            <b-link :href="'https://x2y2.io/eth/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in x2y2.io'" target="_blank">
-                              X2Y2
-                            </b-link>
-                            <br />
-                            <b-link :href="'https://app.indeliblelabs.io/api/png/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'Server generated PNG'" target="_blank">
-                              PNG Image
-                            </b-link>
-                          </b-popover>
+                          {{ token.tokenId }}
                         </font>
+                      </template>
+                    </b-avatar>
+                    -->
+                    <b-card-text class="text-right">
+                      <div class="d-flex justify-content-between m-0 p-0">
+                        <div>
+                          <font size="-2">
+                            <b-button size="sm" :id="'popover-target-' + token.tokenId" variant="link" class="m-0 p-0">
+                              {{ token.tokenId }}
+                            </b-button>
+                            <b-popover :target="'popover-target-' + token.tokenId" placement="right">
+                              <template #title>{{ token.tokenId }}</template>
+                              <b-link :href="'https://opensea.io/assets/ethereum/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in opensea.io'" target="_blank">
+                                OpenSea
+                              </b-link>
+                              <br />
+                              <b-link :href="'https://looksrare.org/collections/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in looksrare.org'" target="_blank">
+                                LooksRare
+                              </b-link>
+                              <br />
+                              <b-link :href="'https://x2y2.io/eth/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'View in x2y2.io'" target="_blank">
+                                X2Y2
+                              </b-link>
+                              <br />
+                              <b-link :href="'https://app.indeliblelabs.io/api/png/' + contractAddress + '/' + token.tokenId" v-b-popover.hover.bottom="'Server generated PNG'" target="_blank">
+                                PNG Image
+                              </b-link>
+                            </b-popover>
+                          </font>
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+                        <div>
+                          <font size="-1">
+                            <b-badge variant="transparent" v-b-popover.hover.bottom="'On '">{{ owner(token.tokenId) }}</b-badge>
+                          </font>
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+                        <div v-if="token.price && token.price.price">
+                          <font size="-1">
+                            <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
+                          </font>
+                        </div>
                       </div>
-                      <div class="flex-grow-1">
-                      </div>
-                      <div>
-                        <font size="-1">
-                          <b-badge variant="transparent" v-b-popover.hover.bottom="'On '">{{ owner(token.tokenId) }}</b-badge>
-                        </font>
-                      </div>
-                      <div class="flex-grow-1">
-                      </div>
-                      <div v-if="token.price && token.price.price">
-                        <font size="-1">
-                          <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
-                        </font>
-                      </div>
+                    </b-card-text>
+                  </b-card>
+                </div>
+              </b-card-group>
+            </div>
+            <div v-else>
+              <b-table small :fields="ownersFields" :items="filteredSortedTokensByOwners.slice(0, 5)" responsive="sm" class="m-1">
+                <template #cell(index)="data">
+                  {{ parseInt(data.index) + 1 }}
+                </template>
+                <template #cell(owner)="data">
+                  {{ owner(data.item.tokenIds[0]) }}
+                </template>
+                <template #cell(tokens1)="data">
+                  <b-card-group deck class="m-1 ml-0 p-0">
+                    <div v-for="tokenId in data.item.tokenIds">
+                      <b-avatar button rounded size="7rem" :src="tokens[tokenId].svg"></b-avatar>
+                      <!-- {{ tokenId }} -->
+                      <b-card-text class="text-right">
+                        <div class="d-flex justify-content-between m-0 p-0">
+                          {{ tokenId }}
+                        </div>
+                        <div class="flex-grow-1">
+                        </div>
+                        <!-- <div>
+                          {{ tokenId }}
+                        </div> -->
+                        <!-- <div v-if="token.price && token.price.price">
+                          <font size="-1">
+                            <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
+                          </font>
+                        </div> -->
+                      </b-card-text>
                     </div>
-                  </b-card-text>
-                </b-card>
-              </div>
-            </b-card-group>
+                  </b-card-group>
+                  <!-- {{ JSON.stringify(data.item.tokenIds) }} -->
+                  <!-- {{ JSON.stringify(data.item.tokenIds) + ' ' + data.item.tokenId }}<br /> -->
+                  <!-- {{ data.item.tokens.length + ' (' + (data.item.tokens.length*100/getTotalSupply).toFixed(2) + '%)'}}<br /> -->
+                  <!-- <b-link :href="'https://opensea.io/accounts/' + data.item.owner + '?search[sortAscending]=false&search[sortBy]=LAST_TRANSFER_DATE'" v-b-popover.hover="'VIEW OWNER ACCOUNT IN OPENSEA'" target="_blank">
+                     <b-icon-link shift-v="+1" font-scale="1.0"></b-icon-link>
+                  </b-link>
+                  <b-link size="sm" @click="settings.searchAccount = data.item.owner; tabIndex = 0; recalculate('ownerSearch'); " variant="outline-primary" v-b-popover.hover="'FILTER BY OWNER ACCOUNT'" >
+                    <b-icon-search shift-v="+1" font-scale="1.0"></b-icon-search>
+                  </b-link> -->
+                </template>
+              </b-table>
+              <!-- <p>{{ filteredSortedTokensByOwners }}</p> -->
+            </div>
           </b-card-body>
         </b-card>
       </b-container>
@@ -194,15 +254,24 @@
         el: '#app',
         data: {
           info: INFO,
+          ownerView: false,
           currentPage: 0,
+          ownerCurrentPage: 1,
           sortOption: 'priceasc',
+          ownerSortOption: 'countdsc',
           pageSize: 100,
+          ownerPageSize: 10,
           currentPage: 1,
           sortOptions: [
             { value: 'idasc', text: '▲ Id' },
             { value: 'iddsc', text: '▼ Id' },
             { value: 'priceasc', text: '▲ Price' },
             { value: 'pricedsc', text: '▼ Price' },
+            { value: 'random', text: 'Random' },
+          ],
+          ownerSortOptions: [
+            { value: 'countasc', text: '▲ Count' },
+            { value: 'countdsc', text: '▼ Count' },
             { value: 'random', text: 'Random' },
           ],
           pageSizes: [
@@ -212,6 +281,11 @@
             { value: 1000, text: '1k' },
             { value: 2500, text: '2.5k' },
             { value: 10000, text: '10k' },
+          ],
+          ownersFields: [
+            { key: 'index', label: '#' },
+            { key: 'owner', label: 'Owner' },
+            { key: 'tokens1', label: 'Tokens' },
           ],
           searchAccount: null,
           layer: null,
@@ -229,6 +303,9 @@
         computed: {
           contractAddress() {
             return INFO[0].address;
+          },
+          tokens() {
+            return INFO[0].tokenData;
           },
           totalSupply() {
             return ethers.BigNumber.from(INFO[0].totalSupply).toNumber();
@@ -383,6 +460,19 @@
             }
             return results;
           },
+          filteredSortedTokensByOwners() {
+            let results = this.filteredTokensByOwners;
+            if (this.ownerSortOption == 'countasc') {
+              results.sort((a, b) => a.count - b.count);
+            } else if (this.ownerSortOption == 'countdsc') {
+              results.sort((a, b) => b.count - a.count);
+            } else {
+              results.sort(() => {
+                return Math.random() - 0.5;
+              });
+            }
+            return results;
+          },
         },
         methods: {
           toggleTrait(layer, trait) {
@@ -434,7 +524,6 @@
           },
           owner(tokenId, length = 20) {
             const address = this.owners[tokenId] || null;
-            // console.log("tokenId: " + tokenId + ", owner: " + address);
             if (address in this.ensMap) {
               return this.ensMap[address].substring(0, length);
             }
