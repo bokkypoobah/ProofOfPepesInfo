@@ -138,27 +138,11 @@
                 </div>
               </b-card-group>
             </b-card>
-            <!--
-            <p>layerOptions: {{ layerOptions }}</p>
-            <p>filteredCollectionTokens: {{ filteredCollectionTokens }}</p>
-            <p>Contract address: {{ contractAddress }}</p>
-            <p>Total Supply: {{ totalSupply }}</p>
-            <p>Layers: {{ layerNames }}</p>
-            -->
             <div v-if="!ownerView">
               <b-card-group deck class="m-1 ml-0 p-0">
                 <div v-for="token in pagedFilteredCollectionTokens">
                   <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 15rem;">
                     <b-avatar button rounded size="15rem" :src="token.svg"></b-avatar>
-                    <!--
-                    <b-avatar button rounded size="7rem" :src="token.svg" badge-left badge-top badge-offset="-6px" badge-variant="transparent">
-                      <template #badge>
-                        <font size="-2">
-                          {{ token.tokenId }}
-                        </font>
-                      </template>
-                    </b-avatar>
-                    -->
                     <b-card-text class="text-right">
                       <div class="d-flex justify-content-between m-0 p-0">
                         <div>
@@ -209,46 +193,27 @@
             <div v-else>
               <b-table small :fields="ownersFields" :items="pagedFilteredSortedTokensByOwners" responsive="sm" class="m-1">
                 <template #cell(index)="data">
-                  <!-- {{ ownerCurrentPage }} -->
                   {{ ((ownerCurrentPage - 1) * ownerPageSize) + parseInt(data.index) + 1 }}
                 </template>
                 <template #cell(owner)="data">
                   {{ owner(data.item.tokenIds[0]) }}
+                  {{ data.item.tokenIds.length + '(' + (data.item.tokenIds.length*100/totalSupply).toFixed(2) + '%)' }}
                 </template>
                 <template #cell(tokens1)="data">
                   <b-card-group deck class="m-1 ml-0 p-0">
                     <div v-for="tokenId in data.item.tokenIds">
                       <b-avatar button rounded size="7rem" :src="tokens[tokenId].svg"></b-avatar>
-                      <!-- {{ tokenId }} -->
                       <b-card-text class="text-right">
                         <div class="d-flex justify-content-between m-0 p-0">
                           {{ tokenId }}
                         </div>
                         <div class="flex-grow-1">
                         </div>
-                        <!-- <div>
-                          {{ tokenId }}
-                        </div> -->
-                        <!-- <div v-if="token.price && token.price.price">
-                          <font size="-1">
-                            <b-badge variant="success" v-b-popover.hover.bottom="'On ' + token.price.source">{{ token.price.price }}</b-badge>
-                          </font>
-                        </div> -->
                       </b-card-text>
                     </div>
                   </b-card-group>
-                  <!-- {{ JSON.stringify(data.item.tokenIds) }} -->
-                  <!-- {{ JSON.stringify(data.item.tokenIds) + ' ' + data.item.tokenId }}<br /> -->
-                  <!-- {{ data.item.tokens.length + ' (' + (data.item.tokens.length*100/getTotalSupply).toFixed(2) + '%)'}}<br /> -->
-                  <!-- <b-link :href="'https://opensea.io/accounts/' + data.item.owner + '?search[sortAscending]=false&search[sortBy]=LAST_TRANSFER_DATE'" v-b-popover.hover="'VIEW OWNER ACCOUNT IN OPENSEA'" target="_blank">
-                     <b-icon-link shift-v="+1" font-scale="1.0"></b-icon-link>
-                  </b-link>
-                  <b-link size="sm" @click="settings.searchAccount = data.item.owner; tabIndex = 0; recalculate('ownerSearch'); " variant="outline-primary" v-b-popover.hover="'FILTER BY OWNER ACCOUNT'" >
-                    <b-icon-search shift-v="+1" font-scale="1.0"></b-icon-search>
-                  </b-link> -->
                 </template>
               </b-table>
-              <!-- <p>{{ filteredSortedTokensByOwners }}</p> -->
             </div>
           </b-card-body>
         </b-card>
@@ -599,7 +564,6 @@
                 }
                 this.sync.completed = parseInt(this.sync.completed) + batch.length;
               }
-              // console.log("ensMap: " + JSON.stringify(ensMap));
               this.ensMap = ensMap;
               localStorage.setItem('popENSMap', JSON.stringify(ensMap));
               this.sync.section = null;
