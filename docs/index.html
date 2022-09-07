@@ -122,6 +122,9 @@
             <p>Total Supply: {{ totalSupply }}</p>
             <p>Layers: {{ layerNames }}</p>
             -->
+            <!--
+            <p>{{ filteredTokensByOwners }}</p>
+            -->
             <b-card-group deck class="m-1 ml-0 p-0">
               <div v-for="token in pagedFilteredCollectionTokens">
                 <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 15rem;">
@@ -362,6 +365,23 @@
           },
           pagedFilteredCollectionTokens() {
             return this.filteredSortedCollectionTokens.slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize);
+          },
+          filteredTokensByOwners() {
+            const collator = {};
+            for (result of Object.values(this.filteredCollectionTokens)) {
+              const owner = this.owners[result.tokenId];
+              if (!collator[owner]) {
+                collator[owner] = [result.tokenId];
+              } else {
+                collator[owner].push(result.tokenId);
+              }
+            }
+            const results = [];
+            for (const key of Object.keys(collator)) {
+              const tokenIds = collator[key];
+              results.push( { owner: key, count: tokenIds.length, tokenIds: tokenIds } );
+            }
+            return results;
           },
         },
         methods: {
