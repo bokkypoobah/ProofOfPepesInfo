@@ -96,14 +96,19 @@
               </div>
               <div class="mt-1 pr-1">
                 <div v-if="ownerView">
-                  <b-pagination size="sm" v-model="ownerCurrentPage" :total-rows="filteredSortedTokensByOwners.length" :per-page="pageSize" style="height: 0;"></b-pagination>
+                  <b-pagination size="sm" v-model="ownerCurrentPage" :total-rows="filteredSortedTokensByOwners.length" :per-page="ownerPageSize" style="height: 0;"></b-pagination>
                 </div>
                 <div v-else>
                   <b-pagination size="sm" v-model="currentPage" :total-rows="filteredSortedCollectionTokens.length" :per-page="pageSize" style="height: 0;"></b-pagination>
                 </div>
               </div>
               <div class="mt-1 pl-1">
-                <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
+                <div v-if="ownerView">
+                  <b-form-select size="sm" v-model="ownerPageSize" :options="pageSizes" v-b-popover.hover.top="'Owner Page size'"></b-form-select>
+                </div>
+                <div v-else>
+                  <b-form-select size="sm" v-model="pageSize" :options="pageSizes" v-b-popover.hover.top="'Page size'"></b-form-select>
+                </div>
               </div>
             </div>
             <b-card v-if="layer != null" no-header no-body class="m-0 mt-1 p-1 border-1">
@@ -202,9 +207,10 @@
               </b-card-group>
             </div>
             <div v-else>
-              <b-table small :fields="ownersFields" :items="filteredSortedTokensByOwners.slice(0, 5)" responsive="sm" class="m-1">
+              <b-table small :fields="ownersFields" :items="pagedFilteredSortedTokensByOwners" responsive="sm" class="m-1">
                 <template #cell(index)="data">
-                  {{ parseInt(data.index) + 1 }}
+                  <!-- {{ ownerCurrentPage }} -->
+                  {{ ((ownerCurrentPage - 1) * ownerPageSize) + parseInt(data.index) + 1 }}
                 </template>
                 <template #cell(owner)="data">
                   {{ owner(data.item.tokenIds[0]) }}
@@ -260,7 +266,7 @@
           sortOption: 'priceasc',
           ownerSortOption: 'countdsc',
           pageSize: 100,
-          ownerPageSize: 10,
+          ownerPageSize: 100,
           currentPage: 1,
           sortOptions: [
             { value: 'idasc', text: '▲ Id' },
@@ -276,6 +282,7 @@
           ],
           pageSizes: [
             { value: 10, text: '10' },
+            { value: 50, text: '50' },
             { value: 100, text: '100' },
             { value: 500, text: '500' },
             { value: 1000, text: '1k' },
@@ -472,6 +479,9 @@
               });
             }
             return results;
+          },
+          pagedFilteredSortedTokensByOwners() {
+            return this.filteredSortedTokensByOwners.slice((this.ownerCurrentPage - 1) * this.ownerPageSize, this.ownerCurrentPage * this.ownerPageSize);
           },
         },
         methods: {
