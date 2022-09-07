@@ -66,6 +66,13 @@
               <div class="mt-1 pr-1">
                 <b-button size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
               </div>
+              <div class="mt-2" style="width: 200px;">
+                <b-progress v-if="sync.section != null" height="1.5rem" :max="sync.total" show-progress :animated="sync.section != null" :variant="sync.section != null ? 'success' : 'secondary'" v-b-popover.hover.top="'Click on the Sync(ing) button to (un)pause'">
+                  <b-progress-bar :value="sync.completed">
+                    {{ sync.total == null ? sync.completed : (sync.completed + '/' + sync.total + ' ' + ((sync.completed / sync.total) * 100).toFixed(0) + '%') }}
+                  </b-progress-bar>
+                </b-progress>
+              </div>
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
@@ -209,6 +216,12 @@
           owners: {},
           ensMap: {},
           selectedTraits: {},
+          sync: {
+            section: null,
+            // ? error: false,
+            total: null,
+            completed: null,
+          },
         },
         computed: {
           contractAddress() {
@@ -368,6 +381,8 @@
           async retrievePrices() {
             let continuation = null;
             let prices = {};
+            this.sync.section = "Prices";
+            this.sync.total = null;
             do {
               let url = "https://api.reservoir.tools/tokens/bootstrap/v1?contract=" + this.contractAddress + "&limit=500" +
                 (continuation != null ? "&continuation=" + continuation : '');
@@ -386,11 +401,13 @@
                   prices[token.tokenId] = { price: token.price, validUntil: token.validUntil, source: token.source };
                 }
               }
+              this.sync.completed = Object.keys(prices).length;
               // state.sync.completed = Object.keys(prices).length;
-              // state.sync.total = state.sync.completed;
+              // this.sync.total = this.sync.completed;
             } while (continuation != null /*&& !state.halt && !state.sync.error */);
             this.prices = prices;
             localStorage.setItem('popPrices', JSON.stringify(prices));
+            this.sync.section = null;
           },
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
@@ -424,6 +441,9 @@
               const erc721Helper = new ethers.Contract(ERC721HELPERADDRESS, ERC721HELPERABI, provider);
               const owners = {};
               const NFTOWNERBATCHSIZE = 200; // 500 OK
+              this.sync.section = "Owners";
+              this.sync.total = this.totalSupply;
+              this.sync.completed = 0;
               const generateRange = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
               for (let i = 0; i < this.totalSupply; i += NFTOWNERBATCHSIZE) {
                 const to = (i + NFTOWNERBATCHSIZE > this.totalSupply) ? this.totalSupply : i + NFTOWNERBATCHSIZE;
@@ -432,9 +452,11 @@
                 for (let j = 0; j < ownersResult[0].length; j++) {
                   owners[tokenIds[j]] = ownersResult[1][j];
                 }
+                this.sync.completed = Object.keys(owners).length;
               }
               this.owners = owners;
               localStorage.setItem('popOwners', JSON.stringify(owners));
+              this.sync.section = "ENS";
               const ensMap = {};
               for (let i in owners) {
                 const owner = owners[i];
@@ -442,28 +464,26 @@
                   ensMap[owner] = owner;
                 }
               }
-              // console.log("ensMap: " + JSON.stringify(ensMap));
               let addresses = Object.keys(ensMap);
-              // console.log("addresses: " + JSON.stringify(addresses));
+              this.sync.total = addresses.length;
+              this.sync.completed = 0;
               const ensReverseRecordsContract = new ethers.Contract(ENSREVERSERECORDSADDRESS, ENSREVERSERECORDSABI, provider);
               const ENSOWNERBATCHSIZE = 200; // 500 fails occassionally
               for (let i = 0; i < addresses.length; i += ENSOWNERBATCHSIZE) {
-              //   this.processing = "RETRIEVING LIVE ENS REVERSE RECORDS FROM THE ETHEREUM MAINNET: " + ethers.utils.commify(i) + " OF " + ethers.utils.commify(addresses.length);
                 const batch = addresses.slice(i, parseInt(i) + ENSOWNERBATCHSIZE);
-                // console.log("Batch: " + i + " " + addresses[i] + " " + batch);
-                // console.log(JSON.stringify(batch));
                 const allnames = await ensReverseRecordsContract.getNames(batch);
-              //   // NOT CHECKING ADDRESSES AS THE ADDRESSES CAME FROM A CONTRACT. AND account. const validNames = allnames.filter((n) => normalize(n) === n );
                 for (let j = 0; j < batch.length; j++) {
                   const address = batch[j];
                   const name = allnames[j];
                   ensMap[address] = name != null && name.length > 0 ? name : address;
               //     // const normalized = normalize(address);
                 }
+                this.sync.completed = parseInt(this.sync.completed) + batch.length;
               }
-              console.log("ensMap: " + JSON.stringify(ensMap));
+              // console.log("ensMap: " + JSON.stringify(ensMap));
               this.ensMap = ensMap;
               localStorage.setItem('popENSMap', JSON.stringify(ensMap));
+              this.sync.section = null;
             }
           },
         },
