@@ -61,10 +61,10 @@
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-button size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
+                <b-button :disabled="sync.section != null" size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
               </div>
               <div class="mt-1 pr-2">
-                <b-button size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
+                <b-button :disabled="sync.section != null" size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
               </div>
               <div class="mt-2" style="width: 200px;">
                 <b-progress v-if="sync.section != null" height="1.5rem" :max="sync.total" show-progress :animated="sync.section != null" :variant="sync.section != null ? 'success' : 'secondary'" v-b-popover.hover.top="'Click on the Sync(ing) button to (un)pause'">
