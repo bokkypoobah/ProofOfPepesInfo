@@ -202,14 +202,38 @@
                 <template #cell(tokens1)="data">
                   <b-card-group deck class="m-1 ml-0 p-0">
                     <div v-for="tokenId in data.item.tokenIds">
-                      <b-avatar button rounded size="7rem" :src="tokens[tokenId].svg"></b-avatar>
-                      <b-card-text class="text-right">
-                        <div class="d-flex justify-content-between m-0 p-0">
-                          {{ tokenId }}
-                        </div>
-                        <div class="flex-grow-1">
-                        </div>
-                      </b-card-text>
+                      <b-card body-class="p-0" header-class="p-1" img-top class="m-1 p-0 border-0" style="max-width: 7rem;">
+                        <b-avatar button rounded size="7rem" :src="tokens[tokenId].svg"></b-avatar>
+                        <b-card-text class="text-right">
+                          <div class="d-flex justify-content-between m-0 p-0">
+                            <font size="-2">
+                              <b-button size="sm" :id="'popover-target-' + tokenId" variant="link" class="m-0 p-0">
+                                {{ tokenId }}
+                              </b-button>
+                              <b-popover :target="'popover-target-' + tokenId" placement="right">
+                                <template #title>{{ tokenId }}</template>
+                                <b-link :href="'https://opensea.io/assets/ethereum/' + contractAddress + '/' + tokenId" v-b-popover.hover.bottom="'View in opensea.io'" target="_blank">
+                                  OpenSea
+                                </b-link>
+                                <br />
+                                <b-link :href="'https://looksrare.org/collections/' + contractAddress + '/' + tokenId" v-b-popover.hover.bottom="'View in looksrare.org'" target="_blank">
+                                  LooksRare
+                                </b-link>
+                                <br />
+                                <b-link :href="'https://x2y2.io/eth/' + contractAddress + '/' + tokenId" v-b-popover.hover.bottom="'View in x2y2.io'" target="_blank">
+                                  X2Y2
+                                </b-link>
+                                <br />
+                                <b-link :href="'https://app.indeliblelabs.io/api/png/' + contractAddress + '/' + tokenId" v-b-popover.hover.bottom="'Server generated PNG'" target="_blank">
+                                  PNG Image
+                                </b-link>
+                              </b-popover>
+                            </font>
+                          </div>
+                          <div class="flex-grow-1">
+                          </div>
+                        </b-card-text>
+                      </b-card>
                     </div>
                   </b-card-group>
                 </template>
