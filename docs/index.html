@@ -490,8 +490,9 @@
           async retrievePrices() {
             let continuation = null;
             let prices = {};
-            this.sync.section = "Prices";
+            this.sync.completed = 0;
             this.sync.total = this.totalSupply;
+            this.sync.section = "Prices";
             do {
               let url = "https://api.reservoir.tools/tokens/v5?contract=" + this.contractAddress + "&limit=100" +
                 (continuation != null ? "&continuation=" + continuation : '');
@@ -555,9 +556,9 @@
               const erc721Helper = new ethers.Contract(ERC721HELPERADDRESS, ERC721HELPERABI, provider);
               const owners = {};
               const NFTOWNERBATCHSIZE = 200; // 500 OK
-              this.sync.section = "Owners";
-              this.sync.total = this.totalSupply;
               this.sync.completed = 0;
+              this.sync.total = this.totalSupply;
+              this.sync.section = "Owners";
               const generateRange = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
               for (let i = 0; i < this.totalSupply; i += NFTOWNERBATCHSIZE) {
                 const to = (i + NFTOWNERBATCHSIZE > this.totalSupply) ? this.totalSupply : i + NFTOWNERBATCHSIZE;
