@@ -491,9 +491,9 @@
             let continuation = null;
             let prices = {};
             this.sync.section = "Prices";
-            this.sync.total = null;
+            this.sync.total = this.totalSupply;
             do {
-              let url = "https://api.reservoir.tools/tokens/bootstrap/v1?contract=" + this.contractAddress + "&limit=500" +
+              let url = "https://api.reservoir.tools/tokens/v5?contract=" + this.contractAddress + "&limit=100" +
                 (continuation != null ? "&continuation=" + continuation : '');
               console.log("url: " + url);
               const data = await fetch(url)
@@ -507,12 +507,18 @@
               continuation = data.continuation;
               if (data && data.tokens) {
                 for (const token of data.tokens) {
-                  prices[token.tokenId] = { price: token.price, validUntil: token.validUntil, source: token.source };
+                  let price = null;
+                  let validUntil = null;
+                  let source = null;
+                  if (token.market.floorAsk.price) {
+                    price = token.market.floorAsk.price.amount.native;
+                    validUntil = token.market.floorAsk.validUntil;
+                    source = token.market.floorAsk.source.name;
+                  }
+                  prices[token.token.tokenId] = { price, validUntil, source, lastSell: token.token.lastSell, rarityRank: token.rarityRank };
                 }
               }
               this.sync.completed = Object.keys(prices).length;
-              // state.sync.completed = Object.keys(prices).length;
-              // this.sync.total = this.sync.completed;
             } while (continuation != null /*&& !state.halt && !state.sync.error */);
             this.prices = prices;
             localStorage.setItem('popPrices', JSON.stringify(prices));
