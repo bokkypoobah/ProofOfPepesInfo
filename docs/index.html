@@ -77,7 +77,7 @@
               </div>
               <div class="mt-1 flex-grow-1">
               </div>
-              <div class="mt-1 pr-1">
+              <div class="mt-1">
                 <div v-if="!ownerView">
                   <font size="-2" v-b-popover.hover.top="'# owners'">{{ filteredSortedTokensByOwners.length }}</font>
                 </div>
@@ -85,6 +85,12 @@
               <div class="mt-1 pr-1">
                 <b-button size="sm" :pressed.sync="ownerView" variant="link" v-b-popover.hover.top="'By owners or tokens'"><span v-if="ownerView"><b-icon-people-fill shift-v="+1" font-scale="1.0"></b-icon-people-fill></span><span v-else><b-icon-people shift-v="+1" font-scale="1.0"></b-icon-people></span></b-button>
               </div>
+              <div class="mt-1">
+                <b-button size="sm" :pressed.sync="showInfo" variant="link" v-b-popover.hover.top="'Show info'"><span v-if="showInfo"><b-icon-info-circle-fill shift-v="+1" font-scale="1.0"></b-icon-info-circle-fill></span><span v-else><b-icon-info-circle shift-v="+1" font-scale="1.0"></b-icon-info-circle></span></b-button>
+              </div>
+              <div class="mt-1 flex-grow-1">
+              </div>
+
               <div class="mt-1 pr-1">
                 <div v-if="ownerView">
                   <b-form-select size="sm" v-model="ownerSortOption" :options="ownerSortOptions" v-b-popover.hover.top="'Yeah. Sort'"></b-form-select>
@@ -145,6 +151,38 @@
                 </div>
               </b-card-group>
             </b-card>
+            <div v-if="showInfo">
+              <b-card no-header no-body class="m-2 p-1">
+                <b-card-body class="m-0 p-0">
+                  <b-card-text class="m-1 p-1">
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="Collection:" class="mx-0 my-1 p-0">
+                      <b-form-input type="text" readonly size="sm" :value="info.name" class="w-50"></b-form-input>
+                    </b-form-group>
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="Collection Address:" class="mx-0 my-1 p-0">
+                      <b-link :href="'https://etherscan.io/token/' + contractAddress" v-b-popover.hover.bottom="'View in Etherscan.io'" target="_blank">{{ contractAddress }}</b-link>
+                    </b-form-group>
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="Collection Owner:" class="mx-0 my-1 p-0">
+                      <b-link :href="'https://twitter.com/proofofpepe'" v-b-popover.hover.bottom="'View in Twitter.com'" target="_blank">@proofofpepe</b-link>
+                    </b-form-group>
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="Markets:" class="mx-0 my-1 p-0">
+                      <b-link :href="'https://opensea.io/collection/proofofpepe'" target="_blank">OpenSea.io</b-link>,
+                      <b-link :href="'https://looksrare.org/collections/' + contractAddress" target="_blank">LooksRare.org</b-link>,
+                      <b-link :href="'https://x2y2.io/collection/proofofpepe/items'" target="_blank">X2Y2.io</b-link>,
+                      <b-link :href="'https://sudoswap.xyz/#/browse/pools/' + contractAddress" target="_blank">sudoswap.xyz</b-link>,
+                      <b-link :href="'https://www.gem.xyz/collection/proofofpepe/'" target="_blank">gem.xyz</b-link>
+                    </b-form-group>
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="This Dapp GitHub:" class="mx-0 my-1 p-0">
+                      <b-link :href="'https://github.com/bokkypoobah/ProofOfPepesInfo'" v-b-popover.hover.bottom="'View in GitHub.com. Feel free to clone and improve'" target="_blank">https://github.com/bokkypoobah/ProofOfPepesInfo</b-link>
+                    </b-form-group>
+                    <b-form-group label-cols="2" label-size="sm" label-align="right" label="" class="mx-0 mt-3 p-0">
+                      Enjoy. And hello, from the past.
+                      <br />
+                      (c) BokkyPooBah / Bok Consulting Pty Ltd 2022. The MIT Licence.
+                    </b-form-group>
+                  </b-card-text>
+                </b-card-body>
+              </b-card>
+            </div>
             <div v-if="!ownerView">
               <b-card-group deck class="m-1 ml-0 p-0">
                 <div v-for="token in pagedFilteredCollectionTokens">
@@ -255,7 +293,8 @@
       window.app = new Vue({
         el: '#app',
         data: {
-          info: INFO,
+          info: INFO[0],
+          showInfo: false,
           ownerView: false,
           currentPage: 0,
           ownerCurrentPage: 1,
@@ -535,7 +574,7 @@
           getSVG(layerIndex, traitIndex) {
             return INFO[0].layers[layerIndex].traits[parseInt(traitIndex)].svg;
           },
-          owner(tokenId, length = 20) {
+          owner(tokenId, length = 24) {
             const address = this.owners[tokenId] || null;
             if (address in this.ensMap) {
               return this.ensMap[address].substring(0, length);
