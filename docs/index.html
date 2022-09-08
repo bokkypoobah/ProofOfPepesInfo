@@ -55,7 +55,7 @@
               <div class="mt-1 pr-1">
                 <b-form-input type="text" size="sm" v-model.trim="searchAccount" debounce="600" placeholder="🔍 ens1, addy1, ..."></b-form-input>
               </div>
-              <div class="mt-1 pr-1">
+              <div class="mt-1">
                 <b-form-select size="sm" v-model="layer" :options="layerOptions" v-b-popover.hover.top="'Filter by layer'"></b-form-select>
               </div>
               <div class="mt-1 flex-grow-1">
@@ -63,8 +63,10 @@
               <div class="mt-1 pr-1">
                 <b-button :disabled="sync.section != null" size="sm" @click="retrievePrices" variant="primary" style="min-width: 80px; ">Retrieve Prices</b-button>
               </div>
-              <div class="mt-1 pr-2">
+              <div class="mt-1">
                 <b-button :disabled="sync.section != null" size="sm" @click="retrieveOwners" variant="primary" style="min-width: 80px; ">Retrieve Owners</b-button>
+              </div>
+              <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-2" style="width: 200px;">
                 <b-progress v-if="sync.section != null" height="1.5rem" :max="sync.total" show-progress :animated="sync.section != null" :variant="sync.section != null ? 'success' : 'secondary'" v-b-popover.hover.top="'Click on the Sync(ing) button to (un)pause'">
@@ -76,7 +78,12 @@
               <div class="mt-1 flex-grow-1">
               </div>
               <div class="mt-1 pr-1">
-                <b-button size="sm" :pressed.sync="ownerView" variant="link" v-b-popover.hover.top="'Owner view'"><span v-if="ownerView"><b-icon-people-fill shift-v="+1" font-scale="1.0"></b-icon-people-fill></span><span v-else><b-icon-people shift-v="+1" font-scale="1.0"></b-icon-people></span></b-button>
+                <div v-if="!ownerView">
+                  <font size="-2" v-b-popover.hover.top="'# owners'">{{ filteredSortedTokensByOwners.length }}</font>
+                </div>
+              </div>
+              <div class="mt-1 pr-1">
+                <b-button size="sm" :pressed.sync="ownerView" variant="link" v-b-popover.hover.top="'By owners or tokens'"><span v-if="ownerView"><b-icon-people-fill shift-v="+1" font-scale="1.0"></b-icon-people-fill></span><span v-else><b-icon-people shift-v="+1" font-scale="1.0"></b-icon-people></span></b-button>
               </div>
               <div class="mt-1 pr-1">
                 <div v-if="ownerView">
@@ -88,10 +95,10 @@
               </div>
               <div class="mt-1 pr-1">
                 <div v-if="ownerView">
-                  <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedTokensByOwners.length }}</font>
+                  <font size="-2" v-b-popover.hover.top="'# owners'">{{ filteredSortedTokensByOwners.length }}</font>
                 </div>
                 <div v-else>
-                  <font size="-2" v-b-popover.hover.top="'Blah'">{{ filteredSortedCollectionTokens.length }}</font>
+                  <font size="-2" v-b-popover.hover.top="'# tokens'">{{ filteredSortedCollectionTokens.length }}</font>
                 </div>
               </div>
               <div class="mt-1 pr-1">
