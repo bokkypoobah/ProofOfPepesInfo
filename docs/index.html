@@ -414,6 +414,7 @@
                   selectedTokenIds = selectedTokenIds.filter(tokenId => thisTraitTokenIds.includes(tokenId));
                 }
               }
+              console.log("selectedTokenIds: " + JSON.stringify(selectedTokenIds.map(e => parseInt(e.toString()))));
               for (const tokenId of selectedTokenIds) {
                 const token = INFO[0].tokenData[tokenId];
                 const price = this.prices[token.tokenId] || null;
